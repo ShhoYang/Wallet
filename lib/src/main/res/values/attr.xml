@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToolbarLayout">
+        <attr name="title" format="string" />
+        <attr name="showBack" format="boolean" />
+        <attr name="showLine" format="boolean" />
+        <attr name="iconTint" format="color" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundButton">
+        <attr name="radius" format="dimension" />
+        <attr name="normalColor" format="color" />
+        <attr name="pressedColor" format="color" />
+        <attr name="disableColor" format="color" />
+        <attr name="btnTextColor" format="color" />
+    </declare-styleable>
+</resources>

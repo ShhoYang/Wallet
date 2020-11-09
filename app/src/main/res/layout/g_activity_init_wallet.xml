@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.InitWalletActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_padding">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/gl_"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <ImageView
+            android:id="@+id/ivLogo_"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl_" />
+
+        <TextView
+            android:id="@+id/tvName_"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="@string/wallet_app_name"
+            android:textColor="@color/text_dark_blue"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo_" />
+
+        <com.highstreet.lib.view.RoundButton
+            android:id="@+id/btnCreate"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="创建钱包"
+            app:btnTextColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvName_"
+            app:normalColor="@color/colorPrimary8"
+            app:pressedColor="@color/colorPrimary8" />
+
+        <com.highstreet.lib.view.RoundButton
+            android:id="@+id/btnImport"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:text="导入钱包"
+            app:btnTextColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCreate"
+            app:normalColor="@color/colorPrimary8"
+            app:pressedColor="@color/colorPrimary8" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <include layout="@layout/include_toolbar" />
+
+
+    <View
+        android:id="@+id/Left"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom" />
+
+    <View
+        android:id="@+id/Center"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|center_horizontal" />
+
+    <View
+        android:id="@+id/Right"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|right" />
+
+</FrameLayout>

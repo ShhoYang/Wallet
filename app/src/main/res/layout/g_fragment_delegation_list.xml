@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.highstreet.lib.view.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/baseRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clTop"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_marginLeft="@dimen/activity_padding"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="@dimen/activity_padding"
+            android:background="@drawable/shape_round_primary"
+            android:orientation="horizontal"
+            app:layout_scrollFlags="scroll">
+
+            <FrameLayout
+                android:id="@+id/flDelegateAmount"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                app:layout_constraintEnd_toStartOf="@id/flValidator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="已经委托总额"
+                    android:textColor="@color/text_light_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvDelegationAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flValidator"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/flDelegateAmount"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="已委托验证人"
+                    android:textColor="@color/text_light_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvValidatorCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flReward"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                app:layout_constraintEnd_toStartOf="@id/flReceiveAddress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/flDelegateAmount">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="全部奖励"
+                    android:textColor="@color/text_light_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvReward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:singleLine="true"
+                    android:text="0"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flReceiveAddress"
+                android:layout_width="0dp"
+                android:layout_height="72dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/flReward"
+                app:layout_constraintTop_toBottomOf="@id/flValidator">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="领取地址"
+                    android:textColor="@color/text_light_blue"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvReceiveAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:textColor="@color/text_white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/activity_padding"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="@dimen/activity_padding"
+            android:background="@color/line" />
+
+        <com.highstreet.lib.view.StateView
+            android:id="@+id/baseEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/baseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </com.highstreet.lib.view.StateView>
+
+    </LinearLayout>
+
+</com.highstreet.lib.view.RefreshLayout>

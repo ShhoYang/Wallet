@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.ScanActivity">
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.king.zxing.ViewfinderView
+        android:id="@+id/viewfinderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cornerColor="@color/colorPrimary"
+        app:frameColor="@color/colorPrimary"
+        app:laserColor="@color/colorPrimary" />
+
+    <include layout="@layout/include_toolbar" />
+
+</FrameLayout>

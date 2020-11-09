@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:gravity="center_vertical"
+        android:text="提案列表"
+        android:textColor="@color/text_dark_blue"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <com.highstreet.lib.view.RefreshLayout
+        android:id="@+id/baseRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="64dp">
+
+        <com.highstreet.lib.view.StateView
+            android:id="@+id/baseEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/baseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </com.highstreet.lib.view.StateView>
+
+    </com.highstreet.lib.view.RefreshLayout>
+
+</FrameLayout>

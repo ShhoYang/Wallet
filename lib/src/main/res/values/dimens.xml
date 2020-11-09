@@ -1,0 +1,6 @@
+<resources>
+
+    <dimen name="activity_padding">16dp</dimen>
+    <dimen name="title_height">96dp</dimen>
+
+</resources>

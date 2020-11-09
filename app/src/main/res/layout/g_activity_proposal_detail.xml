@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gaojie.activity.ProposalDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding"
+            android:paddingBottom="@dimen/activity_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/statusPoint"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/text_subtitle"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="12dp"
+                android:background="@color/line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="提案类型"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="同意"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressYes"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_yes" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="强烈反对"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvNoWithVeto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressNoWithVeto"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_no_with_veto" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="不同意"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressNo"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_no" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="弃权"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvAbstain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <ProgressBar
+                android:id="@+id/progressAbstain"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_abstain" />
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="提案发起时间"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvSubmitTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="投票开始时间"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvVotingStartTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="投票截止时间"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvVotingEndTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="我的意见"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvOpinion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:text="未参与"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/llVote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/llYes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/proposal_yes"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_proposal_yes" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llNo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/proposal_no"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_proposal_no" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="不同意"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llNoWithVeto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/proposal_no_with_veto"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_proposal_no_with_veto" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="强烈反对"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAbstain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/proposal_abstain"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_proposal_abstain" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="弃权"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

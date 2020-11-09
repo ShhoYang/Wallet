@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_circle_light_blue"
+        android:gravity="center"
+        android:padding="4dp"
+        android:textColor="@color/text_dark_blue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:singleLine="true"
+        android:textColor="@color/text_dark_blue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tvStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvId"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="156666666666666666666615666666666666666666661566666666666666666666" />
+
+    <View
+        android:id="@+id/statusPoint"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        app:layout_constraintBottom_toBottomOf="@id/tvStatus"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toTopOf="@id/tvStatus"
+        tools:background="@drawable/shape_circle_green" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_subtitle"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/statusPoint"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="通过" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@color/line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
+

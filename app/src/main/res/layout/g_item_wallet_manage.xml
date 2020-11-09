@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvWalletName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="hao" />
+
+        <TextView
+            android:id="@+id/tvBackup"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="请备份"
+            android:textColor="@color/text_orange"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvWalletName"
+            tools:text="hao" />
+
+        <TextView
+            android:id="@+id/tvWalletAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="middle"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/text_subtitle"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWalletName"
+            app:layout_constraintWidth_percent="0.4"
+            tools:text="anioagoannioungaiohaonhgnoai" />
+
+        <ImageView
+            android:id="@+id/ivCopy"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/icon_copy"
+            app:layout_constraintBottom_toBottomOf="@id/tvWalletAddress"
+            app:layout_constraintStart_toEndOf="@id/tvWalletAddress"
+            app:layout_constraintTop_toTopOf="@id/tvWalletAddress" />
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="middle"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/text_title"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWalletAddress" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/icon_delete"
+            app:layout_constraintBottom_toBottomOf="@id/tvAmount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvAmount" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ivSelected"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/ic_ok" />
+
+</FrameLayout>
+

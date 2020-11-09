@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    tools:context=".gaojie.activity.CreateWalletActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="224dp"
+        android:background="@drawable/mnemonic_border"
+        android:orientation="vertical"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic01"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic02"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic03"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic04"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic05"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic06"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic07"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic08"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic09"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic10"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic11"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic12"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic13"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic14"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic15"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic16"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic17"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic18"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic19"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic20"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etMnemonic21"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic22"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic23"
+                style="@style/mnemonic" />
+
+            <EditText
+                android:id="@+id/etMnemonic24"
+                style="@style/mnemonic" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        style="@style/InputViewName"
+        android:layout_marginTop="16dp"
+        android:text="钱包名字" />
+
+    <EditText
+        android:id="@+id/etName"
+        style="@style/InputViewContent"
+        android:digits="@string/digits"
+        android:hint="请输入钱包名称"
+        android:inputType="text"
+        android:maxLength="12"
+        android:singleLine="true" />
+
+    <include
+        android:id="@+id/nameLine"
+        layout="@layout/g_include_input_line" />
+
+    <TextView
+        style="@style/InputViewTip"
+        android:text="1~12位字符" />
+
+    <com.highstreet.lib.view.RoundButton
+        android:id="@+id/btnImport"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:enabled="true"
+        android:text="导入钱包" />
+
+</LinearLayout>

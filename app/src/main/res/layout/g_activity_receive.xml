@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    tools:context=".gaojie.activity.ReceiveActivity">
+
+    <TextView
+        android:id="@+id/tvChainName"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/shape_round_light_blue"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:textColor="@color/text_dark_blue"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/clAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_round_light_blue"
+        android:paddingLeft="16dp"
+        android:paddingTop="32dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="32dp">
+
+        <ImageView
+            android:id="@+id/ivQr"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/text_title"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivQr"
+            tools:text="ayuhiauhgaboiugaiuboighaubnouigh" />
+
+        <com.highstreet.lib.view.RoundButton
+            android:id="@+id/btnCopy"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="32dp"
+            android:text="复制地址"
+            app:btnTextColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAddress"
+            app:normalColor="@color/colorPrimary7"
+            app:pressedColor="@color/colorPrimary7" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

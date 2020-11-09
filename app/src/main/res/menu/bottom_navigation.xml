@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_capital"
+        android:icon="@drawable/ic_tab_wallet"
+        android:title="@string/tab_capital" />
+    <item
+        android:id="@+id/tab_staking"
+        android:icon="@drawable/ic_tab_staking"
+        android:title="@string/tab_staking" />
+
+    <item
+        android:id="@+id/tab_proposal"
+        android:icon="@drawable/ic_tab_proposal"
+        android:title="@string/tab_proposal" />
+    <item
+        android:id="@+id/tab_me"
+        android:icon="@drawable/ic_tab_me"
+        android:title="@string/tab_me" />
+</menu>

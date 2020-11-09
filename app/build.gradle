@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.highstreet.wallet"
+        minSdkVersion 23
+        targetSdkVersion 28
+        versionCode 8
+        versionName "1.0.8"
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'haoshi'
+            keyPassword '123456'
+            storeFile file('haoshi.jks')
+            storePassword '123456'
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "Wallet-${defaultConfig.versionName}.apk"
+        }
+    }
+
+    packagingOptions {
+        exclude 'lib/x86_64/darwin/libscrypt.dylib'
+        exclude 'lib/x86_64/freebsd/libscrypt.so'
+        exclude 'lib/x86_64/linux/libscrypt.so'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':lib')
+    //bitcoin
+    implementation 'org.bitcoinj:bitcoinj-core:0.15.2'
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.1.0'
+    //jackson
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.7.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.7.3'
+    //sqliteChiper
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.9@aar'
+    //picasso for images
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //shimmer
+    implementation 'com.romainpiel.shimmer:library:1.4.0@aar'
+    //for qr code
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+    //permission check
+    implementation 'gun0912.ted:tedpermission:1.0.3'
+    //circle Image
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'org.apache.commons:commons-lang3:3.6'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.3.21'
+    implementation 'com.squareup.moshi:moshi:1.8.0'
+    implementation files('libs/httpclient-4.5.3.jar')
+    implementation files('libs/apache-httpcomponents-httpcore.jar')
+    //for ed25519
+    implementation files('libs/bip32-ed25519-java-1.0.0-SNAPSHOT.jar')
+    implementation 'net.i2p.crypto:eddsa:0.3.0'
+    //foreground notification
+    implementation 'com.github.shasin89:NotificationBanner:1.1.5'
+
+    implementation 'com.google.guava:guava:22.0-android'
+    implementation 'com.king.zxing:zxing-lite:1.1.9'
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+}

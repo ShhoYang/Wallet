@@ -1,0 +1,53 @@
+package com.highstreet.wallet.task.FetchTask;
+
+import com.highstreet.wallet.base.BaseApplication;
+import com.highstreet.wallet.base.BaseChain;
+import com.highstreet.wallet.base.BaseConstant;
+import com.highstreet.wallet.network.ApiClient;
+import com.highstreet.wallet.network.res.ResCdpParam;
+import com.highstreet.wallet.task.CommonTask;
+import com.highstreet.wallet.task.TaskListener;
+import com.highstreet.wallet.task.TaskResult;
+import com.highstreet.wallet.utils.WLog;
+
+import retrofit2.Response;
+
+public class KavaCdpParamTask extends CommonTask {
+    private BaseChain mChain;
+
+    public KavaCdpParamTask(BaseApplication app, TaskListener listener, BaseChain chain) {
+        super(app, listener);
+        this.mResult.taskType   = BaseConstant.TASK_FETCH_KAVA_CDP_PARAM;
+        this.mChain = chain;
+    }
+
+    @Override
+    protected TaskResult doInBackground(String... strings) {
+        try {
+            if (mChain.equals(BaseChain.KAVA_MAIN)) {
+                Response<ResCdpParam> response = ApiClient.getKavaChain(mApp).getCdpParams().execute();
+                if(response.isSuccessful() && response.body() != null && response.body().result != null) {
+                    mResult.resultData = response.body().result;
+                    mResult.isSuccess = true;
+
+                } else {
+                    WLog.w("KavaCdpParamTask : NOk");
+                }
+
+            } else if (mChain.equals(BaseChain.KAVA_TEST)) {
+                Response<ResCdpParam> response = ApiClient.getKavaTestChain(mApp).getCdpParams().execute();
+                if(response.isSuccessful() && response.body() != null && response.body().result != null) {
+                    mResult.resultData = response.body().result;
+                    mResult.isSuccess = true;
+
+                } else {
+                    WLog.w("KavaCdpParamTask : NOk");
+                }
+            }
+
+        } catch (Exception e) {
+            WLog.w("KavaCdpParamTask Error " + e.getMessage());
+        }
+        return mResult;
+    }
+}

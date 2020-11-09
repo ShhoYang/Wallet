@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.TransactionActivity">
+
+    <include layout="@layout/include_toolbar" />
+
+    <ImageView
+        android:id="@+id/ivScan"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_scan" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/title_height"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_padding">
+
+        <TextView
+            style="@style/InputViewName"
+            android:text="收款地址" />
+
+        <EditText
+            android:id="@+id/etToAddress"
+            style="@style/InputViewContent"
+            android:digits="@string/digits"
+            android:hint="请输入对方地址" />
+
+        <include
+            android:id="@+id/toAddressLine"
+            layout="@layout/g_include_input_line" />
+
+        <TextView
+            style="@style/InputViewName"
+            android:layout_marginTop="32dp"
+            android:text="金额/DIP" />
+
+        <EditText
+            android:id="@+id/etAmount"
+            style="@style/InputViewContent"
+            android:digits="0123456789"
+            android:hint="请输入金额"
+            android:inputType="numberDecimal"
+            android:maxLength="19"
+            android:singleLine="true" />
+
+        <include
+            android:id="@+id/amountLine"
+            layout="@layout/g_include_input_line" />
+
+        <TextView
+            style="@style/InputViewName"
+            android:layout_marginTop="32dp"
+            android:text="费用/‰"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/etFee"
+            style="@style/InputViewContent"
+            android:digits="0123456789"
+            android:enabled="false"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:text="1"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/feeLine"
+            layout="@layout/g_include_input_line"
+            android:visibility="gone" />
+
+        <com.highstreet.lib.view.RoundButton
+            android:id="@+id/btnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="48dp"
+            android:enabled="false"
+            android:text="确定" />
+
+    </LinearLayout>
+
+</merge>

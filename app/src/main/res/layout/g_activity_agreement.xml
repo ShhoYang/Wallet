@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.AgreementActivity">
+
+    <com.highstreet.lib.view.ProgressWebView
+        android:id="@+id/baseWebView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/activity_padding"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/cbAgree"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cbAgree"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginBottom="@dimen/activity_padding"
+        app:layout_constraintBottom_toTopOf="@id/btnNext"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="我已阅读并同意以上条款"
+        android:textColor="@color/text_title"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/cbAgree"
+        app:layout_constraintStart_toEndOf="@id/cbAgree"
+        app:layout_constraintTop_toTopOf="@id/cbAgree" />
+
+    <com.highstreet.lib.view.RoundButton
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/activity_padding"
+        android:enabled="false"
+        android:text="继续"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

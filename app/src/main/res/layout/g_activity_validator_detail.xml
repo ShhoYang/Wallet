@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.ValidatorDetailActivity">
+
+    <com.highstreet.lib.view.ToolbarLayout
+        android:id="@+id/baseToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:iconTint="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_padding"
+            android:layout_marginRight="@dimen/activity_padding"
+            android:gravity="center"
+            android:textColor="@color/text_white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:textColor="@color/text_light_blue"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ivCopy"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@mipmap/icon_copy_2" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_marginTop="32dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/shape_validator_detail" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                app:cardBackgroundColor="@color/colorPrimary9"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="12dp">
+
+                <TextView
+                    android:id="@+id/tvAvatar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="48sp"
+                    android:textStyle="bold" />
+            </android.support.v7.widget.CardView>
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="受托总数"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tvShares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="自抵押总数"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tvSelfShares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="佣金率"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@id/tvRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="活跃度"
+                android:textColor="@color/text_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:text="100%"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_gravity="center_vertical"
+                android:background="@color/line" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_padding"
+            android:text="简介"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvProfile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingLeft="@dimen/activity_padding"
+            android:paddingRight="@dimen/activity_padding"
+            android:textColor="@color/text_dark_blue"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            android:padding="@dimen/activity_padding">
+
+            <com.highstreet.lib.view.RoundButton
+                android:id="@+id/btnDelegate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="委托" />
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</merge>

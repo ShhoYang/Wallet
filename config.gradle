@@ -1,0 +1,58 @@
+ext {
+    versions = [
+            buildTools : '28.0.3',
+            compileSdk : 28,
+            minSdk     : 16,
+            targetSdk  : 28,
+
+            versionCode: 7,
+            versionName: "1.1.2",
+
+            support    : '28.0.0',
+            constraint : '1.1.3',
+            lifecycle  : '1.1.1',
+            coroutines : '1.3.8',
+
+            kotlin     : '1.3.72',
+
+            okhttp     : '3.12.0',
+            rxjava     : '2.1.1',
+            retrofit   : '2.5.0',
+
+            glide      : '4.5.0',
+            player     : '3.0.2'
+    ]
+
+    supports = [
+            "appcompat"        : "com.android.support:appcompat-v7:${versions.support}",
+            "cardview"         : "com.android.support:cardview-v7:${versions.support}",
+            "design"           : "com.android.support:design:${versions.support}",
+            "recyclerview"     : "com.android.support:recyclerview-v7:${versions.support}",
+            "annotations"      : "com.android.support:support-annotations:${versions.support}",
+            "constraint-layout": "com.android.support.constraint:constraint-layout:${versions.constraint}",
+    ]
+
+    implementations = [
+            "multidex"            : 'com.android.support:multidex:1.0.2',
+
+            "lifecycle"           : "android.arch.lifecycle:extensions:$versions.lifecycle",
+
+            "retrofit-adapter"    : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            "retrofit-converter"  : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            "rxandroid"           : "io.reactivex.rxjava2:rxandroid:$versions.rxjava",
+            "okhttp-logging"      : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
+            "cookie"              : 'com.github.franmontiel:PersistentCookieJar:v1.0.1',
+
+
+            "rxpermissions"       : 'com.github.tbruyelle:rxpermissions:0.10.2',
+
+            "kotlin-stdlib"       : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+
+            "KLog"                : 'com.github.zhaokaiqiang.klog:library:1.6.0',
+
+            "glide"               : "com.github.bumptech.glide:glide:$versions.glide",
+    ]
+
+    supportLibs = supports.values()
+    implementationLibs = implementations.values()
+}

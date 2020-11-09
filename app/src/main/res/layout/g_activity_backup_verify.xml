@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_padding"
+    tools:context=".gaojie.activity.BackupVerifyActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="验证你的钱包助记词"
+        android:textColor="@color/text_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="请按顺序点击助记词，验证你备注的助记词正确无误。"
+        android:textColor="@color/text_subtitle"
+        android:textSize="16sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvTop"
+        android:minHeight="84dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/mnemonic_border"
+        android:overScrollMode="never"
+        android:padding="4dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:overScrollMode="never"
+        android:padding="4dp" />
+
+    <com.highstreet.lib.view.RoundButton
+        android:id="@+id/btnComfirm"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:enabled="false"
+        android:text="确认" />
+
+</LinearLayout>

@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.highstreet.wallet">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/wallet_app_name"
+        android:supportsRtl="true"
+        android:theme="@style/GAppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+
+        <activity
+            android:name=".activities.IntroActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+
+        <activity
+            android:name=".activities.PasswordSetActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.PasswordCheckActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.AppLockActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.AppLockSetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+
+        <activity
+            android:name=".activities.CreateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.RestoreActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.RestorePathActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.WatchingAccountAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.TokenDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.ValidatorListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.ValidatorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.VoteListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.VoteDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.SendActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.DelegateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.UndelegateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.RedelegateActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.ClaimRewardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.RewardAddressChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.ReInvestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.VoteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.TxDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+
+        <activity
+            android:name=".activities.WebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.AccountListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.AccountDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".activities.MnemonicCheckActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.KavaCdpListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.KavaCdpDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.HtlcSendActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.HtlcResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.HtlcRefundActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+
+        <activity
+            android:name=".activities.chains.kava.CreateCdpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.kava.RepayCdpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.kava.DrawDebtActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.kava.DepositCdpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.kava.WithdrawCdpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.ClaimIncentiveActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.ok.StakeDepositActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.ok.StakeWithdrawActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.ok.OKValidatorListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.ok.OKVoteDirectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+
+        <activity
+            android:name=".activities.chains.starname.StarNameListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.RegisterStarNameDomainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.RegisterStarNameAccountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.StarNameDomainDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.StarNameAccountDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.DeleteStarNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.ReNewStarNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name=".activities.chains.starname.ReplaceStarNameActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/WelcomeTheme"
+            tools:replace="screenOrientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".gaojie.activity.AgreementActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.InitWalletActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.WalletTypeActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.CreatePasswordActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.CreateWalletActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ImportWalletActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.WalletManageActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.BackupActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.BackupVerifyActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ReceiveActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.TransactionActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ScanActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.TransactionRecordActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.DelegationTransactionRecordActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ValidatorActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ValidatorChooseActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ValidatorDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeColorBgTheme"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.DelegationActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.DelegationDetailActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.UnDelegationActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.RedelegationActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ProposalDetailActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.CrashActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+
+        <activity
+            android:name=".gaojie.activity.TestActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".test.TestActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <!--<meta-data-->
+        <!--android:name="com.google.firebase.messaging.default_notification_color"-->
+        <!--android:resource="@color/colorWhite" />-->
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+    </application>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

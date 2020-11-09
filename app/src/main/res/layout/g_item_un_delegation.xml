@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:textColor="@color/text_title"
+        android:textSize="14sp"
+        tools:text="dip1pr2np86wvuutpzrg90g87497txfkchd2e759cy" />
+
+    <TextView
+        android:id="@+id/tvShares"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_subtitle"
+        android:textSize="14sp"
+        tools:text="股份：5000000000000000000" />
+
+    <TextView
+        android:id="@+id/tvBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/text_subtitle"
+        android:textSize="14sp"
+        tools:text="余额：4999500000000000000dip" />
+
+    <TextView
+        android:id="@+id/tvCompletionTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/text_subtitle"
+        android:textSize="14sp"
+        tools:text="截止时间：" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="12dp"
+        android:background="@color/line" />
+
+</LinearLayout>
+

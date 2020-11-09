@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.WalletManageActivity">
+
+    <include layout="@layout/include_toolbar" />
+
+    <ImageView
+        android:id="@+id/ivAdd"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="48dp"
+        android:layout_marginRight="8dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_add" />
+
+    <com.highstreet.lib.view.RefreshLayout
+        android:id="@+id/baseRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/title_height">
+
+        <com.highstreet.lib.view.StateView
+            android:id="@+id/baseEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/baseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </com.highstreet.lib.view.StateView>
+
+    </com.highstreet.lib.view.RefreshLayout>
+
+</merge>
