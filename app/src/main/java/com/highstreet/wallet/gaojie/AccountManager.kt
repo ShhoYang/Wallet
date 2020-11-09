@@ -2,6 +2,7 @@ package com.highstreet.wallet.gaojie
 
 import android.text.TextUtils
 import com.highstreet.agent.utils.SPUtils
+import com.highstreet.wallet.BuildConfig
 import com.highstreet.wallet.base.BaseApplication
 import com.highstreet.wallet.base.BaseChain
 import com.highstreet.wallet.crypto.CryptoHelper
@@ -67,7 +68,8 @@ class AccountManager private constructor() {
      * 子线程执行
      */
     fun init() {
-        var isTest = SPUtils.get(BaseApplication.instance, KEY_IS_TEST_CHAIN, false)
+//        var isTest = SPUtils.get(BaseApplication.instance, KEY_IS_TEST_CHAIN, false)
+        var isTest = BuildConfig.testnet
         chain = if (isTest) BaseChain.DIP_TEST else BaseChain.DIP_MAIN
         initAccounts()
         password = dao().onSelectPassword()

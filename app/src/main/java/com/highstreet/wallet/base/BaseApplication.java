@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.highstreet.wallet.BuildConfig;
 import com.highstreet.wallet.gaojie.activity.CrashActivity;
 import com.highstreet.wallet.gaojie.activity.WelcomeActivity;
 import com.highstreet.wallet.utils.DeviceUuidFactory;
+import com.socks.library.KLog;
 import com.squareup.picasso.Picasso;
 import com.tencent.bugly.crashreport.CrashReport;
 
@@ -36,6 +38,7 @@ public class BaseApplication extends Application {
                 .errorActivity(CrashActivity.class)
                 .restartActivity(WelcomeActivity.class)
                 .apply();
+        KLog.init(BuildConfig.testnet);
     }
 
     public BaseData getBaseDao() {

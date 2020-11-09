@@ -2,6 +2,7 @@ package com.highstreet.wallet.gaojie.vm
 
 import android.arch.lifecycle.MutableLiveData
 import com.highstreet.lib.viewmodel.BaseViewModel
+import com.highstreet.wallet.BuildConfig
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.http.ApiService
 import com.highstreet.wallet.gaojie.http.subscribeBy
@@ -56,6 +57,11 @@ class CreateWalletVM : BaseViewModel() {
      * 水龙头
      */
     private fun test() {
+        if (!BuildConfig.testnet) {
+            resultLD.value = true
+            return
+        }
+
         ApiService.getDipApi().test("https://docs.dippernetwork.com/dip/get_token?" + accountManager.address).subscribeBy({
             resultLD.value = true
         }, {

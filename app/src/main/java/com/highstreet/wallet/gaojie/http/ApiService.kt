@@ -1,7 +1,6 @@
 package com.highstreet.wallet.gaojie.http
 
-import com.highstreet.wallet.base.BaseChain
-import com.highstreet.wallet.gaojie.AccountManager
+import com.highstreet.wallet.BuildConfig
 import com.socks.library.KLog
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,21 +18,16 @@ import java.util.concurrent.TimeUnit
  */
 object ApiService {
 
-    private const val BASE_URL_MAIN = "https://rpc.dippernetwork.com/"
-    private const val BASE_URL_TEST = "https://rpc.testnet.dippernetwork.com/"
+//    private const val BASE_URL_MAIN = "https://rpc.dippernetwork.com/"
+//    private const val BASE_URL_TEST = "https://rpc.testnet.dippernetwork.com/"
 
     private var dipApi: DipApi? = null
     fun getDipApi(): DipApi {
         if (dipApi == null) {
             synchronized(ApiService::class.java) {
 
-                val url = if (BaseChain.DIP_TEST.chain == AccountManager.instance().chain.chain) {
-                    BASE_URL_TEST
-                } else {
-                    BASE_URL_MAIN
-                }
                 val retrofit = Retrofit.Builder()
-                        .baseUrl(url)
+                        .baseUrl(BuildConfig.BASE_URL)
                         .client(getOkHttp())
                         .addConverterFactory(GsonConverterFactory.create())
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

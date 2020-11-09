@@ -43,9 +43,9 @@ class InitWalletActivity : BaseActivity(), View.OnClickListener {
             ImportWalletActivity.start(this, "", isAdd)
         }
 
-        Left.setOnClickListener(this)
-        Center.setOnClickListener(this)
-        Right.setOnClickListener(this)
+//        Left.setOnClickListener(this)
+//        Center.setOnClickListener(this)
+//        Right.setOnClickListener(this)
 
     }
 

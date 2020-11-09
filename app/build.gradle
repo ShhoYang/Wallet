@@ -6,13 +6,14 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.highstreet.wallet"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 8
         versionName "1.0.8"
 
         multiDexEnabled true
+        flavorDimensions "default"
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     signingConfigs {
@@ -33,9 +34,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
-            signingConfig signingConfigs.release
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        product {
+            applicationId 'com.highstreet.wallet'
+            manifestPlaceholders = [
+                    APP_ICON: '@mipmap/ic_launcher'
+            ]
+            buildConfigField 'String', 'BASE_URL', '"https://rpc.dippernetwork.com/"'
+            buildConfigField 'Boolean', 'testnet', 'false'
+        }
+        dev {
+            applicationId = 'com.highstreet.wallet.test'
+            manifestPlaceholders = [
+                    APP_ICON: '@mipmap/ic_launcher_2'
+            ]
+            buildConfigField 'String', 'BASE_URL', '"https://rpc.testnet.dippernetwork.com/"'
+            buildConfigField 'Boolean', 'testnet', 'true'
         }
     }
 
