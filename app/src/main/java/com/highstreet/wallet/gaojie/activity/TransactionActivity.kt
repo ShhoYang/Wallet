@@ -27,8 +27,6 @@ import kotlinx.android.synthetic.main.g_activity_transaction.*
 
 class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
 
-    private var toAddress: String = ""
-
     override fun showToolbar() = false
 
     private val viewModel by lazy {
@@ -91,8 +89,7 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
 
             if (null !== address) {
                 if (address.isAddress()) {
-                    this.toAddress = address
-                    etToAddress.setText(this.toAddress)
+                    etToAddress.setText(address)
                 } else {
                     toast("无效的地址")
                 }
@@ -102,7 +99,7 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
 
     override fun onFingerprintAuthenticateSucceed() {
         showLoading()
-        viewModel.transact(toAddress, etAmount.string())
+        viewModel.transact(etToAddress.string(), etAmount.string())
     }
 
     override fun usePassword(password: String): Boolean {

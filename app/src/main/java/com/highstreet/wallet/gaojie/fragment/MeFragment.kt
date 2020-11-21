@@ -94,6 +94,7 @@ class MeFragment : BaseFragment(), FingerprintCallback, ConfirmDialogListener {
                 val b = FingerprintUtils.isAvailable(it)
                 fingerprintM = FingerprintM()
                 fingerprintM!!.init(it,
+                        true,
                         this,
                         DialogParams(useFingerprint = true, showUserPassword = false)
                 )

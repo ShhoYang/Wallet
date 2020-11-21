@@ -16,6 +16,8 @@ class FingerprintM : FingerprintManagerCompat.AuthenticationCallback(), IFingerp
 
     private val handler = Handler()
 
+    private var useFingerprint = false
+
     private var fingerprintDialog: FingerprintDialog? = null
 
     //指向调用者的指纹回调
@@ -29,12 +31,12 @@ class FingerprintM : FingerprintManagerCompat.AuthenticationCallback(), IFingerp
 
     private var cancellationSignal: CancellationSignal? = null
 
-    override fun init(context: Activity?, fingerprintCallback: FingerprintCallback?, dialogParams: DialogParams) {
+    override fun init(context: Activity?, useFingerprint: Boolean, fingerprintCallback: FingerprintCallback?, dialogParams: DialogParams) {
         if (null == context) {
             return
         }
         this.fingerprintCallback = fingerprintCallback
-
+        this.useFingerprint = useFingerprint
         fingerprintManagerCompat = FingerprintManagerCompat.from(context)
 
         cryptoObject = FingerprintManagerCompat.CryptoObject(CipherHelper().createCipher())
@@ -45,10 +47,12 @@ class FingerprintM : FingerprintManagerCompat.AuthenticationCallback(), IFingerp
 
     override fun authenticate() {
         fingerprintDialog?.show()
-        cancellationSignal = CancellationSignal()
-        cancellationSignal?.setOnCancelListener {
+        if (useFingerprint) {
+            cancellationSignal = CancellationSignal()
+            cancellationSignal?.setOnCancelListener {
+            }
+            fingerprintManagerCompat.authenticate(cryptoObject, 0, cancellationSignal, this, null)
         }
-        fingerprintManagerCompat.authenticate(cryptoObject, 0, cancellationSignal, this, null)
     }
 
     override fun onStop() {

@@ -194,6 +194,7 @@ abstract class BaseActivity : AppCompatActivity(), FingerprintCallback {
         if (null == fingerprint) {
             fingerprint = FingerprintM()
             fingerprint!!.init(this,
+                    useFingerprint,
                     this,
                     DialogParams(useFingerprint = useFingerprint, showUserPassword = showUserPassword)
             )

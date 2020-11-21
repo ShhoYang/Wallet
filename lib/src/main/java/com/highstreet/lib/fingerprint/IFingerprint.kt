@@ -9,7 +9,7 @@ import com.highstreet.lib.fingerprint.listener.FingerprintCallback
  */
 interface IFingerprint {
 
-    fun init(context: Activity?, fingerprintCallback: FingerprintCallback?, dialogParams: DialogParams)
+    fun init(context: Activity?, useFingerprint: Boolean, fingerprintCallback: FingerprintCallback?, dialogParams: DialogParams)
 
     fun authenticate()
 
