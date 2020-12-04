@@ -26,6 +26,7 @@
 
         <TextView
             style="@style/InputViewName"
+            android:layout_marginTop="16dp"
             android:text="收款地址" />
 
         <EditText

@@ -17,8 +17,6 @@ import com.highstreet.wallet.gaojie.model.dip.Proposal
 import com.highstreet.wallet.gaojie.vm.ProposalDetailVM
 import kotlinx.android.synthetic.main.g_activity_proposal_detail.*
 import java.math.BigDecimal
-import java.math.BigInteger
-import java.text.DecimalFormat
 import java.text.NumberFormat
 
 /**
@@ -45,6 +43,15 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun initData() {
+
+        viewModel.proposalLD.observe(this, Observer {
+            setData(it)
+        })
+
+        viewModel.rateLD.observe(this, Observer {
+            calculateRate(it)
+        })
+
         viewModel.opinionLD.observe(this, Observer {
             tvOpinion.text = it
         })
@@ -54,11 +61,8 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
             toast(it?.second)
         })
 
-        viewModel.proposalLD.observe(this, Observer {
-            setData(it)
-        })
-
         proposal?.apply {
+            viewModel.votingRate(id)
             viewModel.proposalOpinion(id)
         }
     }
@@ -75,7 +79,6 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
             tvVotingStartTime.text = StringUtils.utc2String(voting_start_time)
             tvVotingEndTime.text = StringUtils.utc2String(voting_end_time)
             llVote.visibility(isVotingPeriod())
-            calculateRate(final_tally_result)
         }
     }
 
@@ -106,8 +109,8 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
                 val noRate = no.divide(total)
                 val abstainRate = abstain.divide(total)
 //                val df = DecimalFormat("#.####%")
-                val df =  NumberFormat.getPercentInstance()
-                df.maximumFractionDigits=4
+                val df = NumberFormat.getPercentInstance()
+                df.maximumFractionDigits = 4
                 tvYes.text = "(${it.yes})${df.format(yesRate)}"
                 progressYes.progress = yesRate.multiply(maxProcess).toInt()
 

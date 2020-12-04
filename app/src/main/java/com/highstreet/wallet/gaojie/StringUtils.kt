@@ -2,7 +2,6 @@ package com.highstreet.wallet.gaojie
 
 import android.text.TextUtils
 import com.highstreet.wallet.gaojie.model.dip.Coin
-import org.w3c.dom.Text
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -72,7 +71,6 @@ object StringUtils {
         val df = DecimalFormat("#.######")
         if (TextUtils.isDigitsOnly(temp)) {
             val l = temp.toLong().toDouble() / DIP_RATE
-
             return "${df.format(l)}DIP"
         } else if (temp.contains(".")) {
             val l = temp.toDouble() / DIP_RATE

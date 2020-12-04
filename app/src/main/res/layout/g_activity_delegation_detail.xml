@@ -255,7 +255,7 @@
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginBottom="8dp"
-                app:cardBackgroundColor="#CDD5E2"
+                app:cardBackgroundColor="@color/colorPrimary8"
                 app:cardCornerRadius="32dp"
                 app:cardElevation="4dp">
 
@@ -270,6 +270,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="解委托"
+                android:textColor="@color/text_dark_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llReward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="@color/colorPrimary8"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_reward" />
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="领取奖励"
                 android:textColor="@color/text_dark_blue"
                 android:textSize="12sp" />
         </LinearLayout>

@@ -178,7 +178,7 @@ abstract class BaseActivity : AppCompatActivity(), FingerprintCallback {
     }
 
 
-    fun go(cls: Class<out Activity>, isFinish: Boolean = false) {
+    fun to(cls: Class<out Activity>, isFinish: Boolean = false) {
         startActivity(Intent(this, cls))
         if (isFinish) {
             finish()

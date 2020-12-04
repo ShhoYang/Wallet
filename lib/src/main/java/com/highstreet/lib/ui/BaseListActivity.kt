@@ -81,7 +81,6 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
                 RefreshResult.NO_DATA -> state = StateView.Status.NO_DATA
                 RefreshResult.NO_MORE -> {
                     state = StateView.Status.DISMISS
-                    toast(R.string.base_t_no_more)
                 }
             }
         }
@@ -93,7 +92,8 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
             }
             RefreshResult.FAILED -> {
             }
-            RefreshResult.NO_MORE -> toast(R.string.base_t_no_more)
+            RefreshResult.NO_MORE -> {
+            }
         }
     }
 

@@ -31,7 +31,7 @@ abstract class BaseListFragment<T : BaseItem, VM : BaseListViewModel<T>> : BaseF
     private var stateView: StateView? = null
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BasePagedAdapter<T>
+    lateinit var adapter: BasePagedAdapter<T>
 
     override fun getLayoutId() = R.layout.activity_base_list
 
@@ -74,7 +74,6 @@ abstract class BaseListFragment<T : BaseItem, VM : BaseListViewModel<T>> : BaseF
                 RefreshResult.NO_DATA -> state = StateView.Status.NO_DATA
                 RefreshResult.NO_MORE -> {
                     state = StateView.Status.DISMISS
-                    toast(R.string.base_t_no_more)
                 }
             }
         }
@@ -86,7 +85,8 @@ abstract class BaseListFragment<T : BaseItem, VM : BaseListViewModel<T>> : BaseF
             }
             RefreshResult.FAILED -> {
             }
-            RefreshResult.NO_MORE -> toast(R.string.base_t_no_more)
+            RefreshResult.NO_MORE -> {
+            }
         }
     }
 

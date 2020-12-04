@@ -105,7 +105,7 @@ class ImportWalletActivity : BaseActivity() {
                 if (intent.getBooleanExtra(ExtraKey.BOOLEAN, false)) {
                     RxBus.instance().send(RefreshWalletListEvent())
                 } else {
-                    go(MainActivity::class.java)
+                    to(MainActivity::class.java)
                 }
                 finish()
             } else {

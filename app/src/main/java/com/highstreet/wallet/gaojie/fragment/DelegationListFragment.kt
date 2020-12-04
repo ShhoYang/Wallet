@@ -8,7 +8,7 @@ import com.highstreet.wallet.R
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.StringUtils
 import com.highstreet.wallet.gaojie.activity.DelegationDetailActivity
-import com.highstreet.wallet.gaojie.activity.ValidatorActivity
+import com.highstreet.wallet.gaojie.activity.ValidatorListActivity
 import com.highstreet.wallet.gaojie.adapter.DelegationAdapter
 import com.highstreet.wallet.gaojie.model.dip.DelegationInfo
 import com.highstreet.wallet.gaojie.vm.DelegationListVm
@@ -30,7 +30,7 @@ class DelegationListFragment : BaseListFragment<DelegationInfo, DelegationListVm
         super.initView()
         tvReceiveAddress.text = AccountManager.instance().address
         RxView.click(flValidator) {
-            go(ValidatorActivity::class.java)
+            to(ValidatorListActivity::class.java)
         }
     }
 

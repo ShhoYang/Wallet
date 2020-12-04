@@ -24,6 +24,7 @@ import com.highstreet.wallet.gaojie.model.dip.DelegationInfo
 import com.highstreet.wallet.gaojie.model.dip.Validator
 import com.highstreet.wallet.gaojie.vm.RedelegationVM
 import kotlinx.android.synthetic.main.g_activity_redelegation.*
+
 /**
  * @author Yang Shihao
  * @Date 2020/10/27
@@ -98,7 +99,7 @@ class RedelegationActivity : BaseActivity(), View.OnClickListener, View.OnFocusC
 
     override fun onClick(v: View?) {
         when (v) {
-            llAddress -> ValidatorChooseActivity.start(this)
+            llAddress -> ValidatorListActivity.start(this, true)
             tvAll -> {
                 etAmount.setText(amount)
                 etAmount.setSelection(etAmount.string().length)
@@ -120,7 +121,7 @@ class RedelegationActivity : BaseActivity(), View.OnClickListener, View.OnFocusC
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == ValidatorChooseActivity.REQUEST_CODE_VALIDATOR_CHOOSE
+        if (requestCode == ValidatorListActivity.REQUEST_CODE_VALIDATOR_CHOOSE
                 && resultCode == Activity.RESULT_OK
                 && data != null) {
             val validator = data.getSerializableExtra(ExtraKey.SERIALIZABLE) as Validator?

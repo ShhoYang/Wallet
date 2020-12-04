@@ -86,7 +86,7 @@ class BackupVerifyActivity : BaseActivity() {
                 GlobalScope.launch(Dispatchers.Main) {
                     backup()
                     if (BackupActivity.FROM_CREATE == from) {
-                        go(MainActivity::class.java, true)
+                        to(MainActivity::class.java, true)
                     } else {
                         RxBus.instance().send(RefreshWalletListEvent())
                     }
@@ -110,7 +110,7 @@ class BackupVerifyActivity : BaseActivity() {
 
     override fun onBackPressed() {
         if (BackupActivity.FROM_CREATE == from) {
-            go(MainActivity::class.java, true)
+            to(MainActivity::class.java, true)
         } else {
             finish()
         }

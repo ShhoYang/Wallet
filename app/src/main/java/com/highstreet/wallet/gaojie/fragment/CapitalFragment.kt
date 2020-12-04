@@ -100,9 +100,9 @@ class CapitalFragment : BaseFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-            tvWalletAddress, ivWalletAddress -> go(ReceiveActivity::class.java)
+            tvWalletAddress, ivWalletAddress -> to(ReceiveActivity::class.java)
             ivEye -> updateUIStyle(!ivEye.isSelected)
-            ivSwitchWallet -> go(WalletManageActivity::class.java)
+            ivSwitchWallet -> to(WalletManageActivity::class.java)
             ivTip -> {
                 activity?.let {
                     ConfirmDialog(it).setMsg("1DIP等于1,000,000,000,000pdip")

@@ -3,7 +3,6 @@ package com.highstreet.wallet.gaojie.vm
 import android.arch.lifecycle.MutableLiveData
 import com.highstreet.lib.viewmodel.BaseViewModel
 import com.highstreet.lib.viewmodel.RxBus
-import com.highstreet.wallet.base.BaseChain
 import com.highstreet.wallet.cosmos.MsgGenerator
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.AmountUtils
@@ -33,6 +32,7 @@ class UnDelegationVM : BaseViewModel() {
                 generateParams(it.result!!, amount, delegationInfo)
             }
         }, {
+            unDelegateLD.value = Pair(false, "解委托失败")
         }).add()
 
     }

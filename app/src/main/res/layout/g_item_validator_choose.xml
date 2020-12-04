@@ -94,8 +94,8 @@
         android:id="@+id/ivArrow"
         android:layout_width="32dp"
         android:layout_height="64dp"
-        android:padding="8dp"
-        android:src="@mipmap/ic_right_blue" />
+        android:padding="10dp"
+        android:src="@drawable/ic_right" />
 
 </LinearLayout>
 

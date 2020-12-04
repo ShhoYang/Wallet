@@ -30,7 +30,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         compositeDisposable.add(this)
     }
 
-    open fun refreshInResume() {
+    open fun refreshOnResume() {
 
     }
 
@@ -49,7 +49,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         KLog.d(tag, "onResume")
         if (needRefreshInResume) {
             needRefreshInResume = false
-            refreshInResume()
+            refreshOnResume()
         }
     }
 

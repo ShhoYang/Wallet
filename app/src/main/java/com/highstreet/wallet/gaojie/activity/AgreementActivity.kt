@@ -26,7 +26,7 @@ class AgreementActivity : BaseActivity() {
         }
 
         RxView.click(btnNext) {
-            go(InitWalletActivity::class.java, true)
+            to(InitWalletActivity::class.java, true)
         }
     }
 }

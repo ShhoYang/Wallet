@@ -100,7 +100,7 @@ abstract class BaseFragment : Fragment() {
         act { it.toast(resId) }
     }
 
-    fun go(cls: Class<out Activity>, isFinish: Boolean = false) {
-        act { it.go(cls, isFinish) }
+    fun to(cls: Class<out Activity>, isFinish: Boolean = false) {
+        act { it.to(cls, isFinish) }
     }
 }

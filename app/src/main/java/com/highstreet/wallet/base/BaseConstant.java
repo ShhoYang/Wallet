@@ -361,6 +361,7 @@ public class BaseConstant {
     public final static String KEY_NEW_KAVA_PATH    = "44'/459'/0'/0/";
     public final static String KEY_BAND_PATH        = "44'/494'/0'/0/";
     public final static String KEY_NEW_OK_PATH      = "44'/996'/0'/0/";
+    public final static String KEY_DIP_PATH         = "44'/925'/0'/0/";
     public final static String characterFilter  = "[^\\p{L}\\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}\\s]";
 
 

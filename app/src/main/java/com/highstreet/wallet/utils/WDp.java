@@ -57,6 +57,8 @@ import static com.highstreet.wallet.base.BaseChain.BNB_MAIN;
 import static com.highstreet.wallet.base.BaseChain.BNB_TEST;
 import static com.highstreet.wallet.base.BaseChain.CERTIK_TEST;
 import static com.highstreet.wallet.base.BaseChain.COSMOS_MAIN;
+import static com.highstreet.wallet.base.BaseChain.DIP_MAIN;
+import static com.highstreet.wallet.base.BaseChain.DIP_TEST;
 import static com.highstreet.wallet.base.BaseChain.IOV_MAIN;
 import static com.highstreet.wallet.base.BaseChain.IOV_TEST;
 import static com.highstreet.wallet.base.BaseChain.IRIS_MAIN;
@@ -120,7 +122,6 @@ public class WDp {
         result.setSpan(new RelativeSizeSpan(0.8f), result.length() - point, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
         return result;
     }
-
 
 
     public static void showCoinDp(Context c, Coin coin, TextView denomTv, TextView amountTv, BaseChain chain) {
@@ -246,7 +247,7 @@ public class WDp {
 
     public static SpannableString getDpAllRewardAmount(Context c, ArrayList<Reward> rewards, BaseChain chain, String denom) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Reward reward : rewards) {
+        for (Reward reward : rewards) {
             sum = sum.add(reward.getRewardAmount(denom).setScale(0, BigDecimal.ROUND_DOWN));
         }
         return getDpAmount(c, sum, 6, chain);
@@ -254,7 +255,7 @@ public class WDp {
 
     public static BigDecimal getAllRewardAmount(ArrayList<Reward> rewards, String denom) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Reward reward : rewards) {
+        for (Reward reward : rewards) {
             sum = sum.add(reward.getRewardAmount(denom).setScale(0, BigDecimal.ROUND_DOWN));
         }
         return sum;
@@ -270,8 +271,8 @@ public class WDp {
 
     public static SpannableString getValidatorReward(Context c, ArrayList<Reward> rewards, String valOpAddress, BaseChain chain, String denom) {
         BigDecimal result = BigDecimal.ZERO;
-        for(Reward reward : rewards) {
-            if(reward.validatorAddress.equals(valOpAddress)) {
+        for (Reward reward : rewards) {
+            if (reward.validatorAddress.equals(valOpAddress)) {
                 result = reward.getRewardAmount(denom);
                 break;
             }
@@ -280,7 +281,7 @@ public class WDp {
     }
 
     public static SpannableString getIrisValidatorReward(Context c, ResLcdIrisReward reward, String valOpAddress, BaseChain chain) {
-        if(reward == null || TextUtils.isEmpty(valOpAddress)) {
+        if (reward == null || TextUtils.isEmpty(valOpAddress)) {
             return getDpAmount(c, BigDecimal.ZERO, 6, chain);
         }
         return getDpAmount(c, reward.getPerValReward(valOpAddress), 6, chain);
@@ -288,8 +289,8 @@ public class WDp {
 
     public static BigDecimal getValidatorReward(ArrayList<Reward> rewards, String valOpAddress, String denom) {
         BigDecimal result = BigDecimal.ZERO;
-        for(Reward reward : rewards) {
-            if(reward.validatorAddress.equals(valOpAddress)) {
+        for (Reward reward : rewards) {
+            if (reward.validatorAddress.equals(valOpAddress)) {
                 result = reward.getRewardAmount(denom);
                 break;
             }
@@ -302,7 +303,8 @@ public class WDp {
         try {
             result = provision.multiply(BigDecimal.ONE.subtract(commission)).multiply(new BigDecimal("100")).divide(bonded, 2, RoundingMode.HALF_UP);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return result;
     }
 
@@ -313,17 +315,19 @@ public class WDp {
             bonded = new BigDecimal(pool.result.bonded_tokens);
             result = provision.multiply(BigDecimal.ONE.subtract(commission)).multiply(new BigDecimal("100")).divide(bonded, 2, RoundingMode.HALF_UP);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
         return getPercentDp(result);
     }
 
     public static SpannableString getIrisYieldString(ResLcdIrisPool pool, BigDecimal commission) {
         BigDecimal result = BigDecimal.ZERO;
-        if(pool != null) {
+        if (pool != null) {
             try {
                 result = pool.geTotal().multiply(new BigDecimal(0.04)).multiply(BigDecimal.ONE.subtract(commission)).multiply(new BigDecimal("100")).divide(pool.getBonded(), 2, RoundingMode.HALF_UP);
 
-            }catch (Exception e) {}
+            } catch (Exception e) {
+            }
         }
         return getPercentDp(result);
     }
@@ -335,7 +339,8 @@ public class WDp {
             bonded = new BigDecimal(pool.result.bonded_tokens);
             value = provision.multiply(BigDecimal.ONE.subtract(commission)).multiply(delegated).divide(bonded.multiply(new BigDecimal("365000000")), 12, RoundingMode.DOWN);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         SpannableString result;
         result = new SpannableString(getDecimalFormat(c, 12).format(value));
@@ -350,7 +355,8 @@ public class WDp {
             bonded = new BigDecimal(pool.result.bonded_tokens);
             value = provision.multiply(BigDecimal.ONE.subtract(commission)).multiply(delegated).divide(bonded.multiply(new BigDecimal("12000000")), 12, RoundingMode.DOWN);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
         SpannableString result;
         result = new SpannableString(getDecimalFormat(c, 12).format(value));
         result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 12, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
@@ -362,7 +368,8 @@ public class WDp {
         try {
             value = pool.geTotal().multiply(new BigDecimal(0.04)).setScale(0, RoundingMode.DOWN).multiply(BigDecimal.ONE.subtract(commission)).multiply(delegated).divide(pool.getBonded().multiply(new BigDecimal("365000000000000000000")), 18, RoundingMode.DOWN);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
         SpannableString result;
         result = new SpannableString(getDecimalFormat(c, 18).format(value));
@@ -375,7 +382,8 @@ public class WDp {
         try {
             value = pool.geTotal().multiply(new BigDecimal(0.04)).setScale(0, RoundingMode.DOWN).multiply(BigDecimal.ONE.subtract(commission)).multiply(delegated).divide(pool.getBonded().multiply(new BigDecimal("12000000000000000000")), 18, RoundingMode.DOWN);
 
-        }catch (Exception e) {}
+        } catch (Exception e) {
+        }
         SpannableString result;
         result = new SpannableString(getDecimalFormat(c, 18).format(value));
         result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 18, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
@@ -454,19 +462,19 @@ public class WDp {
         return getDpAmount(c, getVestedCoin(balances, denom), 6, chain);
     }
 
-    public static SpannableString getDpAllDelegatedAmount(Context c, ArrayList<BondingState> bondings, ArrayList<Validator> validators,  BaseChain chain) {
+    public static SpannableString getDpAllDelegatedAmount(Context c, ArrayList<BondingState> bondings, ArrayList<Validator> validators, BaseChain chain) {
         return getDpAmount(c, getAllDelegatedAmount(bondings, validators, chain), 6, chain);
     }
 
-    public static BigDecimal getAllDelegatedAmount(ArrayList<BondingState> bondings, ArrayList<Validator> validators,  BaseChain chain) {
+    public static BigDecimal getAllDelegatedAmount(ArrayList<BondingState> bondings, ArrayList<Validator> validators, BaseChain chain) {
         BigDecimal sum = BigDecimal.ZERO;
         if (bondings == null || bondings.size() == 0) return sum;
         if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(BAND_MAIN) || chain.equals(KAVA_TEST) || chain.equals(IOV_MAIN) || chain.equals(IOV_TEST) || chain.equals(CERTIK_TEST)) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         } else if (chain.equals(IRIS_MAIN)) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
@@ -475,8 +483,8 @@ public class WDp {
 
     public static Validator selectValidator(ArrayList<Validator> validators, String opAddress) {
         Validator result = null;
-        for (Validator val:validators) {
-            if(val.operator_address.equals(opAddress)) {
+        for (Validator val : validators) {
+            if (val.operator_address.equals(opAddress)) {
                 result = val;
                 break;
             }
@@ -491,35 +499,35 @@ public class WDp {
     public static BigDecimal getUnbondingAmount(ArrayList<UnBondingState> unbondings) {
         BigDecimal sum = BigDecimal.ZERO;
         if (unbondings == null || unbondings.size() == 0) return sum;
-        for(UnBondingState unbonding : unbondings) {
+        for (UnBondingState unbonding : unbondings) {
             sum = sum.add(unbonding.balance);
         }
         return sum;
     }
 
     public static SpannableString getDpAllAtom(Context c, ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators, BaseChain chain) {
-        return getDpAmount(c, getAllAtom(balances, bondings,unbondings,rewards,validators), 6, chain);
+        return getDpAmount(c, getAllAtom(balances, bondings, unbondings, rewards, validators), 6, chain);
     }
 
     public static BigDecimal getAllAtom(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Balance balance : balances) {
-            if(balance.symbol.equals(BaseConstant.TOKEN_ATOM) || balance.symbol.equals(BaseConstant.TOKEN_MUON)) {
+        for (Balance balance : balances) {
+            if (balance.symbol.equals(BaseConstant.TOKEN_ATOM) || balance.symbol.equals(BaseConstant.TOKEN_MUON)) {
                 sum = sum.add(balance.balance);
             }
         }
-        if(bondings != null) {
-            for(BondingState bonding : bondings) {
+        if (bondings != null) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
         if (unbondings != null) {
-            for(UnBondingState unbonding : unbondings) {
+            for (UnBondingState unbonding : unbondings) {
                 sum = sum.add(unbonding.balance);
             }
         }
         if (rewards != null) {
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 sum = sum.add(reward.getRewardAmount(TOKEN_ATOM));
             }
         }
@@ -535,36 +543,36 @@ public class WDp {
             }
         }
         if (bondings != null) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
         if (unbondings != null) {
-            for(UnBondingState unbonding : unbondings) {
+            for (UnBondingState unbonding : unbondings) {
                 sum = sum.add(unbonding.balance);
             }
         }
         if (rewards != null) {
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 sum = sum.add(reward.getRewardAmount(TOKEN_KAVA));
             }
         }
         return sum;
     }
 
-        public static SpannableString getDpAllIris(Context c, ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ResLcdIrisReward reward, ArrayList<Validator> validators, BaseChain chain) {
+    public static SpannableString getDpAllIris(Context c, ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ResLcdIrisReward reward, ArrayList<Validator> validators, BaseChain chain) {
         return getDpAmount(c, getAllIris(balances, bondings, unbondings, reward, validators), 6, chain);
     }
 
     public static BigDecimal getAllIris(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ResLcdIrisReward reward, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
         for (Balance balance : balances) {
-            if(balance.symbol.equals(TOKEN_IRIS_ATTO)) {
+            if (balance.symbol.equals(TOKEN_IRIS_ATTO)) {
                 sum = sum.add(balance.balance);
             }
         }
         if (bondings != null) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
@@ -579,23 +587,23 @@ public class WDp {
 
     public static BigDecimal getAllBand(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Balance balance : balances) {
-            if(balance.symbol.equals(TOKEN_BAND)) {
+        for (Balance balance : balances) {
+            if (balance.symbol.equals(TOKEN_BAND)) {
                 sum = sum.add(balance.balance);
             }
         }
         if (bondings != null) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
         if (unbondings != null) {
-            for(UnBondingState unbonding : unbondings) {
+            for (UnBondingState unbonding : unbondings) {
                 sum = sum.add(unbonding.balance);
             }
         }
         if (rewards != null) {
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 sum = sum.add(reward.getRewardAmount(TOKEN_BAND));
             }
         }
@@ -604,23 +612,23 @@ public class WDp {
 
     public static BigDecimal getAllIov(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Balance balance : balances) {
-            if(balance.symbol.equals(TOKEN_IOV) || balance.symbol.equals(TOKEN_IOV_TEST)) {
+        for (Balance balance : balances) {
+            if (balance.symbol.equals(TOKEN_IOV) || balance.symbol.equals(TOKEN_IOV_TEST)) {
                 sum = sum.add(balance.balance);
             }
         }
         if (bondings != null) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
         if (unbondings != null) {
-            for(UnBondingState unbonding : unbondings) {
+            for (UnBondingState unbonding : unbondings) {
                 sum = sum.add(unbonding.balance);
             }
         }
         if (rewards != null) {
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 sum = sum.add(reward.getRewardAmount(TOKEN_IOV));
                 sum = sum.add(reward.getRewardAmount(TOKEN_IOV_TEST));
             }
@@ -642,23 +650,23 @@ public class WDp {
 
     public static BigDecimal getAllCtk(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
-        for(Balance balance : balances) {
-            if(balance.symbol.equals(TOKEN_CERTIK_TEST)) {
+        for (Balance balance : balances) {
+            if (balance.symbol.equals(TOKEN_CERTIK_TEST)) {
                 sum = sum.add(balance.balance);
             }
         }
         if (bondings != null) {
-            for(BondingState bonding : bondings) {
+            for (BondingState bonding : bondings) {
                 sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
             }
         }
         if (unbondings != null) {
-            for(UnBondingState unbonding : unbondings) {
+            for (UnBondingState unbonding : unbondings) {
                 sum = sum.add(unbonding.balance);
             }
         }
         if (rewards != null) {
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 sum = sum.add(reward.getRewardAmount(TOKEN_CERTIK_TEST));
             }
         }
@@ -668,13 +676,13 @@ public class WDp {
     public static SpannableString getPriceDp(Context c, BigDecimal input, String symbol, int currency) {
         if (currency == 5) {
             SpannableString result;
-            result = new SpannableString(symbol + " " +getDecimalFormat(c, 8).format(input));
+            result = new SpannableString(symbol + " " + getDecimalFormat(c, 8).format(input));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
             SpannableString result;
-            result = new SpannableString(symbol + " " +getDecimalFormat(c, 2).format(input));
+            result = new SpannableString(symbol + " " + getDecimalFormat(c, 2).format(input));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -683,13 +691,13 @@ public class WDp {
     public static SpannableString getPriceApproximatelyDp(Context c, BigDecimal input, String symbol, int currency) {
         if (currency == 5) {
             SpannableString result;
-            result = new SpannableString(c.getString(R.string.str_approximately)+ " " + symbol + " " +getDecimalFormat(c, 8).format(input));
+            result = new SpannableString(c.getString(R.string.str_approximately) + " " + symbol + " " + getDecimalFormat(c, 8).format(input));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
             SpannableString result;
-            result = new SpannableString(c.getString(R.string.str_approximately)+ " " + symbol + " " +getDecimalFormat(c, 2).format(input));
+            result = new SpannableString(c.getString(R.string.str_approximately) + " " + symbol + " " + getDecimalFormat(c, 2).format(input));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
@@ -698,17 +706,17 @@ public class WDp {
 
     public static SpannableString getValueOfAtom(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastAtomTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastAtomTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastAtomTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastAtomTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -716,17 +724,17 @@ public class WDp {
 
     public static SpannableString getValueOfIris(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastIrisTic())).movePointLeft(18).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastIrisTic())).movePointLeft(18).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastIrisTic())).movePointLeft(18).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastIrisTic())).movePointLeft(18).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -734,17 +742,17 @@ public class WDp {
 
     public static SpannableString getValueOfBnb(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBnbTic())).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastBnbTic())).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBnbTic())).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastBnbTic())).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -752,17 +760,17 @@ public class WDp {
 
     public static SpannableString getValueOfKava(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastKavaTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastKavaTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastKavaTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastKavaTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -770,17 +778,17 @@ public class WDp {
 
     public static SpannableString getValueOfBand(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBandTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastBandTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBandTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastBandTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -789,17 +797,17 @@ public class WDp {
 
     public static SpannableString getValueOfIov(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastIovTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
+        if (dao.getCurrency() == 5) {
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastIovTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
-            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastIovTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
+            totalPrice = totalAmount.multiply(new BigDecimal("" + dao.getLastIovTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -807,17 +815,17 @@ public class WDp {
 
     public static SpannableString getValueOfOk(Context c, BaseData dao, BigDecimal totalAmount) {
         BigDecimal totalPrice = BigDecimal.ZERO;
-        if(dao.getCurrency() == 5) {
+        if (dao.getCurrency() == 5) {
 //            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBandTic())).movePointLeft(6).setScale(8, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
 
         } else {
 //            totalPrice = totalAmount.multiply(new BigDecimal(""+dao.getLastBandTic())).movePointLeft(6).setScale(2, RoundingMode.DOWN);
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(totalPrice));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(totalPrice));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -826,27 +834,27 @@ public class WDp {
     public static SpannableString getDpRawDollor(Context c, String price, int scale) {
         BigDecimal mPrice = new BigDecimal(price);
         SpannableString result;
-        result = new SpannableString("$ " +getDecimalFormat(c, scale).format(mPrice));
+        result = new SpannableString("$ " + getDecimalFormat(c, scale).format(mPrice));
         result.setSpan(new RelativeSizeSpan(0.8f), result.length() - scale, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
         return result;
     }
 
     public static SpannableString getDpRawDollor(Context c, BigDecimal price, int scale) {
         SpannableString result;
-        result = new SpannableString("$ " +getDecimalFormat(c, scale).format(price));
+        result = new SpannableString("$ " + getDecimalFormat(c, scale).format(price));
         result.setSpan(new RelativeSizeSpan(0.8f), result.length() - scale, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
         return result;
     }
 
     public static SpannableString getZeroValue(Context c, BaseData dao) {
-        if(dao.getCurrency() == 5) {
+        if (dao.getCurrency() == 5) {
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 8).format(BigDecimal.ZERO));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 8).format(BigDecimal.ZERO));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 8, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         } else {
             SpannableString result;
-            result = new SpannableString(dao.getCurrencySymbol() + " " +getDecimalFormat(c, 2).format(BigDecimal.ZERO));
+            result = new SpannableString(dao.getCurrencySymbol() + " " + getDecimalFormat(c, 2).format(BigDecimal.ZERO));
             result.setSpan(new RelativeSizeSpan(0.8f), result.length() - 2, result.length(), SPAN_INCLUSIVE_INCLUSIVE);
             return result;
         }
@@ -868,7 +876,7 @@ public class WDp {
 
     public static SpannableString getSelfBondRate(String total, String self) {
         BigDecimal result = new BigDecimal(self).multiply(new BigDecimal("100")).divide(new BigDecimal(total), 2, RoundingMode.DOWN);
-        return  getPercentDp(result);
+        return getPercentDp(result);
     }
 
     public static SpannableString getCommissionRate(String rate) {
@@ -883,7 +891,7 @@ public class WDp {
     public static int getCommisionColor(String rateS) {
         int result = R.color.colorGray1;
         float rate = Float.parseFloat(rateS);
-        if(rate > 0.1999f) {
+        if (rate > 0.1999f) {
             result = R.color.colorCommision4;
             return result;
         }
@@ -911,9 +919,6 @@ public class WDp {
     }
 
 
-
-
-
     public static int getHistoryDpType(ArrayList<Msg> msgs, String address) {
         int result = BaseConstant.TX_TYPE_UNKNOWN;
         if (msgs == null || msgs.size() <= 0)
@@ -935,22 +940,22 @@ public class WDp {
         if (msg.type.equals(BaseConstant.COSMOS_MSG_TYPE_TRANSFER) ||
                 msg.type.equals(BaseConstant.COSMOS_MSG_TYPE_TRANSFER2) ||
                 msg.type.equals(BaseConstant.IRIS_MSG_TYPE_TRANSFER) ||
-                msg.type.equals(BaseConstant.CERTIK_MSG_TYPE_TRANSFER)  ) {
+                msg.type.equals(BaseConstant.CERTIK_MSG_TYPE_TRANSFER)) {
             if (msg.value.from_address != null && msg.value.from_address.equals(address)) {
                 result = BaseConstant.TX_TYPE_SEND;
             } else if (msg.value.to_address != null && msg.value.to_address.equals(address)) {
                 result = BaseConstant.TX_TYPE_RECEIVE;
             } else {
                 if (msg.value.inputs != null && msg.value.inputs.size() > 0) {
-                    for (Input input:msg.value.inputs) {
-                        if(input.address.equals(address)) {
+                    for (Input input : msg.value.inputs) {
+                        if (input.address.equals(address)) {
                             return BaseConstant.TX_TYPE_SEND;
                         }
                     }
                 }
                 if (msg.value.outputs != null && msg.value.outputs.size() > 0) {
-                    for (Output output:msg.value.outputs) {
-                        if(output.address.equals(address)) {
+                    for (Output output : msg.value.outputs) {
+                        if (output.address.equals(address)) {
                             return BaseConstant.TX_TYPE_RECEIVE;
                         }
                     }
@@ -959,14 +964,14 @@ public class WDp {
                 result = BaseConstant.TX_TYPE_TRANSFER;
             }
 
-        } else if  (msg.type.equals(BaseConstant.COSMOS_MSG_TYPE_TRANSFER3)) {
+        } else if (msg.type.equals(BaseConstant.COSMOS_MSG_TYPE_TRANSFER3)) {
             if (msg.value.inputs != null && msg.value.outputs != null) {
-                for (Input input:msg.value.inputs) {
+                for (Input input : msg.value.inputs) {
                     if (address.equals(input.address)) {
                         return BaseConstant.TX_TYPE_SEND;
                     }
                 }
-                for (Output output:msg.value.outputs) {
+                for (Output output : msg.value.outputs) {
                     if (address.equals(output.address)) {
                         return BaseConstant.TX_TYPE_RECEIVE;
                     }
@@ -1079,7 +1084,6 @@ public class WDp {
 
         return result;
     }
-
 
 
     public static String DpTxType(Context c, ArrayList<Msg> msgs, String address) {
@@ -1270,7 +1274,7 @@ public class WDp {
 
     public static String getHistoryDpCnt(ArrayList<Msg> msgs) {
         String result = "";
-        if(msgs.size() > 2) {
+        if (msgs.size() > 2) {
             result = result + " + " + (msgs.size() - 1);
         }
         return result;
@@ -1296,6 +1300,9 @@ public class WDp {
         } else if (chain.equals(OK_TEST)) {
             return BaseConstant.KEY_NEW_OK_PATH + String.valueOf(position);
 
+        } else if (chain.equals(DIP_TEST) || chain.equals(DIP_MAIN)) {
+            return BaseConstant.KEY_DIP_PATH + String.valueOf(position);
+
         } else {
             return BaseConstant.KEY_PATH + String.valueOf(position);
 
@@ -1305,7 +1312,7 @@ public class WDp {
 
     public static DecimalFormat getDecimalFormat(Context c, int cnt) {
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
-        DecimalFormat decimalformat = (DecimalFormat)formatter;
+        DecimalFormat decimalformat = (DecimalFormat) formatter;
         decimalformat.setRoundingMode(RoundingMode.DOWN);
         switch (cnt) {
             case 0:
@@ -1381,7 +1388,9 @@ public class WDp {
             calendar.setTimeInMillis(time);
             SimpleDateFormat simpleFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format1));
             result = simpleFormat.format(calendar.getTimeInMillis());
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         return result;
     }
@@ -1399,31 +1408,33 @@ public class WDp {
                 calendar.add(Calendar.DATE, 21);
                 SimpleDateFormat unbondFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format2));
                 result = unbondFormat.format(calendar.getTimeInMillis());
-                return result + "   " +c.getString(R.string.str_unbonding_21days_after);
+                return result + "   " + c.getString(R.string.str_unbonding_21days_after);
 
-            } else if (chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)){
+            } else if (chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, 3);
                 SimpleDateFormat unbondFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format2));
                 result = unbondFormat.format(calendar.getTimeInMillis());
-                return result + "   " +c.getString(R.string.str_unbonding_3days_after);
+                return result + "   " + c.getString(R.string.str_unbonding_3days_after);
 
             } else if (chain.equals(CERTIK_TEST)) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, 14);
                 SimpleDateFormat unbondFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format2));
                 result = unbondFormat.format(calendar.getTimeInMillis());
-                return result + "   " +c.getString(R.string.str_unbonding_14days_after);
+                return result + "   " + c.getString(R.string.str_unbonding_14days_after);
 
             } else {
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DATE, 3);
                 SimpleDateFormat unbondFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format2));
                 result = unbondFormat.format(calendar.getTimeInMillis());
-                return result + "   " +c.getString(R.string.str_unbonding_3days_after);
+                return result + "   " + c.getString(R.string.str_unbonding_3days_after);
             }
 
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         return result;
     }
@@ -1437,20 +1448,21 @@ public class WDp {
     public static String getUnbondingTimeleft(Context c, long finishTime) {
         String result = "??";
         try {
-            long now        = Calendar.getInstance().getTimeInMillis();
-            long left       = finishTime - now;
+            long now = Calendar.getInstance().getTimeInMillis();
+            long left = finishTime - now;
 
-            if (left >= BaseConstant.CONSTANT_D ) {
-                result = "(" + (left / BaseConstant.CONSTANT_D) +" days remaining)";
-            } else if (left >= BaseConstant.CONSTANT_H ) {
-                result = "(" + (left / BaseConstant.CONSTANT_H) +" hours remaining)";
-            }  else if (left >= BaseConstant.CONSTANT_M ) {
-                result = "(" + (left / BaseConstant.CONSTANT_M) +" minutes remaining)";
+            if (left >= BaseConstant.CONSTANT_D) {
+                result = "(" + (left / BaseConstant.CONSTANT_D) + " days remaining)";
+            } else if (left >= BaseConstant.CONSTANT_H) {
+                result = "(" + (left / BaseConstant.CONSTANT_H) + " hours remaining)";
+            } else if (left >= BaseConstant.CONSTANT_M) {
+                result = "(" + (left / BaseConstant.CONSTANT_M) + " minutes remaining)";
             } else {
                 return "Soon";
             }
 
-        } catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         return result;
     }
@@ -1458,28 +1470,29 @@ public class WDp {
     public static String getUnbondingTimefrom(Context c, String rawStartTime) {
         String result = "??";
         try {
-            long now   = Calendar.getInstance().getTimeInMillis();
+            long now = Calendar.getInstance().getTimeInMillis();
 
             SimpleDateFormat blockDateFormat = new SimpleDateFormat(c.getString(R.string.str_block_time_format));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             long start = blockDateFormat.parse(rawStartTime).getTime();
-            long left  = start + BaseConstant.COSMOS_UNBONDING_TIME - now;
+            long left = start + BaseConstant.COSMOS_UNBONDING_TIME - now;
 
 //            WLog.w("start : " + start);
 //            WLog.w("COSMOS_UNBONDING_TIME : " + BaseConstant.COSMOS_UNBONDING_TIME);
 //            WLog.w("now : " + now);
 
-            if (left >= BaseConstant.CONSTANT_D ) {
-                result = "(D-" + (left / BaseConstant.CONSTANT_D) +")";
-            } else if (left >= BaseConstant.CONSTANT_H ) {
-                result = "(H-" + (left / BaseConstant.CONSTANT_H) +")";
-            } else if (left < 0){
+            if (left >= BaseConstant.CONSTANT_D) {
+                result = "(D-" + (left / BaseConstant.CONSTANT_D) + ")";
+            } else if (left >= BaseConstant.CONSTANT_H) {
+                result = "(H-" + (left / BaseConstant.CONSTANT_H) + ")";
+            } else if (left < 0) {
                 return "completed";
             } else {
                 return "in hour";
             }
 
-        } catch (Exception e){}
+        } catch (Exception e) {
+        }
 
         return result;
     }
@@ -1491,7 +1504,9 @@ public class WDp {
             SimpleDateFormat myFormat = new SimpleDateFormat(c.getString(R.string.str_dp_date_format));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             result = myFormat.format(blockDateFormat.parse(rawValue));
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         return result;
     }
@@ -1503,7 +1518,9 @@ public class WDp {
             SimpleDateFormat myFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format1));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             result = myFormat.format(blockDateFormat.parse(rawValue));
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         return result;
     }
@@ -1515,7 +1532,9 @@ public class WDp {
             SimpleDateFormat myFormat = new SimpleDateFormat(c.getString(R.string.str_dp_time_format1));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             result = myFormat.format(blockDateFormat.parse(rawValue));
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         return result;
     }
@@ -1525,8 +1544,8 @@ public class WDp {
         try {
             SimpleDateFormat blockDateFormat = new SimpleDateFormat(c.getString(R.string.str_block_time_format));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date blockTime  = blockDateFormat.parse(rawValue);
-            Date nowTime    = Calendar.getInstance().getTime();
+            Date blockTime = blockDateFormat.parse(rawValue);
+            Date nowTime = Calendar.getInstance().getTime();
 
             long difference = nowTime.getTime() - blockTime.getTime();
 
@@ -1535,16 +1554,16 @@ public class WDp {
             long differenceHours = difference / (60 * 60 * 1000) % 24;
             long differenceDays = difference / (24 * 60 * 60 * 1000);
 
-            if(differenceDays > 1) {
-                result = ""+differenceDays+ " " + c.getString(R.string.str_day);
-            } else if (differenceDays == 1){
-                result = ""+differenceDays + c.getString(R.string.str_d) + " " + differenceHours + c.getString(R.string.str_h);
+            if (differenceDays > 1) {
+                result = "" + differenceDays + " " + c.getString(R.string.str_day);
+            } else if (differenceDays == 1) {
+                result = "" + differenceDays + c.getString(R.string.str_d) + " " + differenceHours + c.getString(R.string.str_h);
             } else {
                 if (differenceHours > 0) {
-                    result = ""+differenceHours+ c.getString(R.string.str_h) + " " + differenceMinutes + c.getString(R.string.str_m);
+                    result = "" + differenceHours + c.getString(R.string.str_h) + " " + differenceMinutes + c.getString(R.string.str_m);
                 } else {
-                    if(differenceMinutes > 0) {
-                        result = ""+differenceMinutes+ c.getString(R.string.str_m) + " " + differenceSeconds + c.getString(R.string.str_s);
+                    if (differenceMinutes > 0) {
+                        result = "" + differenceMinutes + c.getString(R.string.str_m) + " " + differenceSeconds + c.getString(R.string.str_s);
                     } else {
                         result = differenceSeconds + c.getString(R.string.str_s);
                     }
@@ -1552,9 +1571,10 @@ public class WDp {
 
             }
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
-        return "(" + result + " " + c.getString(R.string.str_ago) +")";
+        return "(" + result + " " + c.getString(R.string.str_ago) + ")";
     }
 
     public static String getTimeTxGap(Context c, String rawValue) {
@@ -1562,8 +1582,8 @@ public class WDp {
         try {
             SimpleDateFormat blockDateFormat = new SimpleDateFormat(c.getString(R.string.str_tx_time_format));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-            Date blockTime  = blockDateFormat.parse(rawValue);
-            Date nowTime    = Calendar.getInstance().getTime();
+            Date blockTime = blockDateFormat.parse(rawValue);
+            Date nowTime = Calendar.getInstance().getTime();
 
             long difference = nowTime.getTime() - blockTime.getTime();
 
@@ -1572,16 +1592,16 @@ public class WDp {
             long differenceHours = difference / (60 * 60 * 1000) % 24;
             long differenceDays = difference / (24 * 60 * 60 * 1000);
 
-            if(differenceDays > 1) {
-                result = ""+differenceDays+ " " + c.getString(R.string.str_day);
-            } else if (differenceDays == 1){
-                result = ""+differenceDays + c.getString(R.string.str_d) + " " + differenceHours + c.getString(R.string.str_h);
+            if (differenceDays > 1) {
+                result = "" + differenceDays + " " + c.getString(R.string.str_day);
+            } else if (differenceDays == 1) {
+                result = "" + differenceDays + c.getString(R.string.str_d) + " " + differenceHours + c.getString(R.string.str_h);
             } else {
                 if (differenceHours > 0) {
-                    result = ""+differenceHours+ c.getString(R.string.str_h) + " " + differenceMinutes + c.getString(R.string.str_m);
+                    result = "" + differenceHours + c.getString(R.string.str_h) + " " + differenceMinutes + c.getString(R.string.str_m);
                 } else {
-                    if(differenceMinutes > 0) {
-                        result = ""+differenceMinutes+ c.getString(R.string.str_m) + " " + differenceSeconds + c.getString(R.string.str_s);
+                    if (differenceMinutes > 0) {
+                        result = "" + differenceMinutes + c.getString(R.string.str_m) + " " + differenceSeconds + c.getString(R.string.str_s);
                     } else {
                         result = differenceSeconds + c.getString(R.string.str_s);
                     }
@@ -1589,23 +1609,22 @@ public class WDp {
 
             }
 
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
 
-        return "(" + result + " " + c.getString(R.string.str_ago) +")";
+        return "(" + result + " " + c.getString(R.string.str_ago) + ")";
     }
-
-
 
 
     public static String cTimeString() {
         Calendar c = Calendar.getInstance();
-        return ""+c.getTimeInMillis();
+        return "" + c.getTimeInMillis();
     }
 
     public static String threeMonthAgoTimeString() {
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MONTH, - 3);
-        return ""+c.getTimeInMillis();
+        c.add(Calendar.MONTH, -3);
+        return "" + c.getTimeInMillis();
     }
 
     public static int getChainColor(Context c, BaseChain chain) {
@@ -1631,36 +1650,36 @@ public class WDp {
     }
 
     public static ColorStateList getTabColor(Context c, BaseChain chain) {
-        if(chain.equals(COSMOS_MAIN)) {
+        if (chain.equals(COSMOS_MAIN)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator);
-        } else if(chain.equals(IRIS_MAIN)) {
+        } else if (chain.equals(IRIS_MAIN)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_iris);
-        } else if(chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
+        } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_kava);
-        } else if(chain.equals(BAND_MAIN)) {
+        } else if (chain.equals(BAND_MAIN)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_band);
-        } else if(chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)) {
+        } else if (chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_iov);
-        } else if(chain.equals(OK_TEST)) {
+        } else if (chain.equals(OK_TEST)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_ok);
-        } else if(chain.equals(CERTIK_TEST)) {
+        } else if (chain.equals(CERTIK_TEST)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_certik);
         }
         return null;
     }
 
     public static ColorStateList getChainTintColor(Context c, BaseChain chain) {
-        if(chain.equals(COSMOS_MAIN)) {
+        if (chain.equals(COSMOS_MAIN)) {
             return c.getResources().getColorStateList(R.color.colorAtom);
-        } else if(chain.equals(IRIS_MAIN)) {
+        } else if (chain.equals(IRIS_MAIN)) {
             return c.getResources().getColorStateList(R.color.colorIris);
-        } else if(chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
+        } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
             return c.getResources().getColorStateList(R.color.colorKava);
-        } else if(chain.equals(BAND_MAIN)) {
+        } else if (chain.equals(BAND_MAIN)) {
             return c.getResources().getColorStateList(R.color.colorBand);
-        } else if(chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)) {
+        } else if (chain.equals(IOV_MAIN) || chain.equals(IOV_TEST)) {
             return c.getResources().getColorStateList(R.color.colorIov);
-        } else if(chain.equals(OK_TEST)) {
+        } else if (chain.equals(OK_TEST)) {
             return c.getResources().getColorStateList(R.color.colorOK);
         } else if (chain.equals(CERTIK_TEST)) {
             return c.getResources().getColorStateList(R.color.colorCertik);
@@ -1898,14 +1917,14 @@ public class WDp {
         }
     }
 
-    public static BigDecimal getCdpHiddenFee(Context c, BigDecimal outstandingDebt,  ResCdpParam.KavaCollateralParam paramCdp, KavaCDP myCdp) {
+    public static BigDecimal getCdpHiddenFee(Context c, BigDecimal outstandingDebt, ResCdpParam.KavaCollateralParam paramCdp, KavaCDP myCdp) {
         BigDecimal result = BigDecimal.ZERO;
         try {
-            long now   = Calendar.getInstance().getTimeInMillis();
+            long now = Calendar.getInstance().getTimeInMillis();
             SimpleDateFormat blockDateFormat = new SimpleDateFormat(c.getString(R.string.str_block_time_format));
             blockDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             long start = blockDateFormat.parse(myCdp.fees_updated).getTime();
-            Long gap  = (now - start)/1000;
+            Long gap = (now - start) / 1000;
             //TODO 냥냥하게 패딩
             gap = gap + 30;
 
@@ -1962,47 +1981,58 @@ public class WDp {
 
     public static void onDpChain(Context c, BaseChain chain, ImageView imgView, TextView txtView) {
         if (chain.equals(COSMOS_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.cosmos_wh_main));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.cosmos_wh_main));
             txtView.setText(c.getString(R.string.str_cosmos_hub_2));
 
         } else if (chain.equals(IRIS_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iris_wh));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iris_wh));
             txtView.setText(c.getString(R.string.str_iris_net_2));
 
         } else if (chain.equals(BNB_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binance_ch_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binance_ch_img));
             txtView.setText(c.getString(R.string.str_binance_net_2));
 
         } else if (chain.equals(BNB_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binancetestnet));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binancetestnet));
             txtView.setText(c.getString(R.string.str_binance_test_net_2));
 
         } else if (chain.equals(KAVA_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_img));
             txtView.setText(c.getString(R.string.str_kava_net_2));
 
         } else if (chain.equals(KAVA_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_test_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_test_img));
             txtView.setText(c.getString(R.string.str_kava_net_test_2));
 
         } else if (chain.equals(IOV_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iov_chain_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iov_chain_img));
             txtView.setText(c.getString(R.string.str_iov_net_2));
 
         } else if (chain.equals(BAND_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.band_chain_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.band_chain_img));
             txtView.setText(c.getString(R.string.str_band_chain_2));
 
         } else if (chain.equals(IOV_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iov_testnet_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.iov_testnet_img));
             txtView.setText(c.getString(R.string.str_iov_net_test_2));
 
         } else if (chain.equals(OK_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.okex_testnet_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.okex_testnet_img));
             txtView.setText(c.getString(R.string.str_ok_net_test_2));
 
         } else if (chain.equals(CERTIK_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.certik_testnet_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.certik_testnet_img));
             txtView.setText(c.getString(R.string.str_certik_chain_test_2));
 
         }
@@ -2010,19 +2040,23 @@ public class WDp {
 
     public static void onDpSwapChain(Context c, BaseChain chain, ImageView imgView, TextView txtView) {
         if (chain.equals(BNB_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binance_ch_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binance_ch_img));
             txtView.setText(c.getString(R.string.str_binance));
 
         } else if (chain.equals(BNB_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binancetestnet));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.binancetestnet));
             txtView.setText(c.getString(R.string.str_binance));
 
         } else if (chain.equals(KAVA_MAIN)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_img));
             txtView.setText(c.getString(R.string.str_kava));
 
         } else if (chain.equals(KAVA_TEST)) {
-            if (imgView != null) imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_test_img));
+            if (imgView != null)
+                imgView.setImageDrawable(c.getResources().getDrawable(R.drawable.kava_test_img));
             txtView.setText(c.getString(R.string.str_kava));
         }
     }

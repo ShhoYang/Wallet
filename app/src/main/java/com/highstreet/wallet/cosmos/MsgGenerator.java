@@ -545,6 +545,12 @@ public class MsgGenerator {
             result.type = BaseConstant.KAVA_MSG_TYPE_INCENTIVE_REWARD;
             result.value = value;
 
+        }else if (chain.equals(DIP_TEST) || chain.equals(DIP_MAIN)) {
+            value.validator_address = from;
+            value.delegator_address = denom;
+
+            result.type = "dip/MsgWithdrawDelegationReward";
+            result.value = value;
         }
         return result;
     }

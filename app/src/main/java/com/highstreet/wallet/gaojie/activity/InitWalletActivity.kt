@@ -77,7 +77,7 @@ class InitWalletActivity : BaseActivity(), View.OnClickListener {
 
         if (sb.length >= 12) {
             if ("CCLLRRLCRRCL" == sb.substring(sb.length - 12, sb.length)) {
-                go(TestActivity::class.java)
+                to(TestActivity::class.java)
             }
         }
     }

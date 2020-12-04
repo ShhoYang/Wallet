@@ -19,7 +19,7 @@ fun String.isPassword(): Boolean {
 }
 
 fun String.isAddress(): Boolean {
-    return matches("^dip[a-zA-Z0-9]{39}".toRegex())
+    return matches("^dip[a-zA-Z0-9]{39,100}".toRegex())
 }
 
 fun String.isAmount(): Boolean {

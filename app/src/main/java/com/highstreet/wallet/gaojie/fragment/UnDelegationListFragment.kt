@@ -23,6 +23,6 @@ class UnDelegationListFragment : BaseListFragment<DelegationInfo, UnDelegationLi
     }
 
     override fun itemClicked(view: View, item: DelegationInfo, position: Int) {
-        activity?.let { DelegationDetailActivity.start(it, item,true) }
+        activity?.let { DelegationDetailActivity.start(it, item, true) }
     }
 }

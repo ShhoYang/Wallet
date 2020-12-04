@@ -446,7 +446,7 @@
             tools:replace="screenOrientation" />
 
         <activity
-            android:name=".gaojie.activity.ValidatorChooseActivity"
+            android:name=".gaojie.activity.ValidatorListActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
 
@@ -473,6 +473,11 @@
 
         <activity
             android:name=".gaojie.activity.RedelegationActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".gaojie.activity.ReceiveRewardActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
 

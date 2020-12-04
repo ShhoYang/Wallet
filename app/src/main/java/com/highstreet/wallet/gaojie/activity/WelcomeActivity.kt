@@ -38,7 +38,7 @@ class WelcomeActivity : BaseActivity() {
                     InitWalletActivity.start(this)
                     finish()
                 } else {
-                    go(MainActivity::class.java, true)
+                    to(MainActivity::class.java, true)
                 }
             } else {
                 AppManager.instance().exit()

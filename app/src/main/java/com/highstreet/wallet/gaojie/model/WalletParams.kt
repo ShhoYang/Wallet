@@ -38,7 +38,7 @@ class WalletParams(
         this.mnemonic.clear()
         this.mnemonic.addAll(mnemonic)
         this.entropyS = WUtil.ByteArrayToHexString(entropy ?: WKey.toEntropy(this.mnemonic))
-        val dKey: DeterministicKey = WKey.getKeyWithPathfromEntropy(china, entropyS, path, newBip44)
+        val dKey: DeterministicKey = WKey.getKeyWithPathfromEntropy(china, entropyS, 0, newBip44)
         this.address = WKey.getDpAddress(china, dKey.publicKeyAsHex)
     }
 

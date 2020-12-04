@@ -33,7 +33,7 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
 
     private val removeItemLiveData: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
 
-    override fun refreshInResume() {
+    override fun refreshOnResume() {
         invalidate()
     }
 

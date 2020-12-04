@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.text.TextUtils
 import android.view.View
 import com.highstreet.lib.extensions.visibility
 import com.highstreet.lib.ui.BaseActivity
@@ -24,6 +25,7 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
 
     private var delegationInfo: DelegationInfo? = null
     private var validator: Validator? = null
+    private var reward: String = "0"
 
     private val viewModel by lazy {
         ViewModelProviders.of(this).get(DelegationDetailVm::class.java)
@@ -38,12 +40,16 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
         RxView.click(ivDetail, this)
         RxView.click(llRedelegate, this)
         RxView.click(llUnDelegate, this)
+        RxView.click(llReward, this)
         RxView.click(llDelegate, this)
     }
 
     override fun initData() {
         val isUnDelegate = intent.getBooleanExtra(ExtraKey.BOOLEAN, false)
+        llRedelegate.visibility(!isUnDelegate)
         llUnDelegate.visibility(!isUnDelegate)
+        llReward.visibility(!isUnDelegate)
+        llDelegate.visibility(!isUnDelegate)
         tvUnDelegateAmount.visibility(isUnDelegate)
         viewModel.validatorLD.observe(this, Observer {
             validator = it
@@ -55,7 +61,8 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
             }
         })
         viewModel.rewardLD.observe(this, Observer {
-            tvReward.text = it
+            reward = it ?: "0"
+            tvReward.text = reward
         })
 
         delegationInfo = intent.getSerializableExtra(ExtraKey.SERIALIZABLE) as DelegationInfo?
@@ -63,7 +70,7 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
             viewModel.getValidator(validator_address)
             viewModel.getReward(validator_address)
             tvAmount.text = StringUtils.pdip2DIP(shares)
-            tvReward.text = "0"
+            tvReward.text = reward
             if (isUnDelegate) {
                 tvUnDelegateAmount.text = "${StringUtils.formatDecimal(shares)}解委托中\n（剩余${StringUtils.timeGap(completionTime)}）"
             }
@@ -85,6 +92,13 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
             llUnDelegate -> {
                 if (null != delegationInfo) {
                     UnDelegationActivity.start(this, delegationInfo!!)
+                }
+            }
+            llReward -> {
+                val validatorAddress = delegationInfo?.validator_address
+                val delegatorAddress = delegationInfo?.delegator_address
+                if (!TextUtils.isEmpty(validatorAddress) && !TextUtils.isEmpty(delegatorAddress) && reward != "0" && !TextUtils.isEmpty(reward)) {
+                    ReceiveRewardActivity.start(this, validatorAddress!!, delegatorAddress!!, reward)
                 }
             }
             llDelegate -> {

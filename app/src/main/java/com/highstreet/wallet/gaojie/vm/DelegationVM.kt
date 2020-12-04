@@ -2,7 +2,6 @@ package com.highstreet.wallet.gaojie.vm
 
 import android.arch.lifecycle.MutableLiveData
 import com.highstreet.lib.viewmodel.RxBus
-import com.highstreet.wallet.base.BaseChain
 import com.highstreet.wallet.cosmos.MsgGenerator
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.AmountUtils
@@ -36,6 +35,7 @@ class DelegationVM : BalanceVM() {
                 }
             }
         }, {
+            resultLD.value = Pair(false, "委托失败")
         }).add()
     }
 

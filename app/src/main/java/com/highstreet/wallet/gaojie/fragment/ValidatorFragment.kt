@@ -5,6 +5,7 @@ import android.view.View
 import com.highstreet.lib.ui.BaseListFragment
 import com.highstreet.wallet.gaojie.activity.ValidatorDetailActivity
 import com.highstreet.wallet.gaojie.adapter.ValidatorAdapter
+import com.highstreet.wallet.gaojie.constant.Constant
 import com.highstreet.wallet.gaojie.constant.ExtraKey
 import com.highstreet.wallet.gaojie.model.dip.Validator
 import com.highstreet.wallet.gaojie.vm.ValidatorVM
@@ -18,7 +19,8 @@ class ValidatorFragment : BaseListFragment<Validator, ValidatorVM>() {
     override fun createAdapter() = ValidatorAdapter()
 
     override fun initData() {
-        viewModel.type = arguments?.getInt(ExtraKey.INT, TYPE_ALL) ?: TYPE_ALL
+        viewModel.filterType = arguments?.getInt(ExtraKey.INT, Constant.VALIDATOR_ALL)
+                ?: Constant.VALIDATOR_ALL
         super.initData()
     }
 
@@ -27,11 +29,6 @@ class ValidatorFragment : BaseListFragment<Validator, ValidatorVM>() {
     }
 
     companion object {
-        const val TYPE_ALL = -1
-        const val TYPE_UN_BONDED = 0
-        const val TYPE_UN_BONDING = 1
-        const val TYPE_BONDED = 2
-        const val TYPE_JAILED= -2
         fun instance(type: Int): ValidatorFragment {
             val fragment = ValidatorFragment()
             val bundle = Bundle()

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.highstreet.lib.view.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/baseRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gaojie.activity.ValidatorListActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llType"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@id/llShares"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="全部"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivTypeArrow"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/ic_down1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llShares"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@id/llRate"
+            app:layout_constraintStart_toEndOf="@id/llType"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvShares"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="受托总数"
+                android:textColor="@color/color_sort_text"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivSharesArrow"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/selector_down" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRate"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/llShares"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvRate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="佣金率"
+                android:textColor="@color/color_sort_text"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivRateArrow"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/selector_down" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llType" />
+
+        <com.highstreet.lib.view.StateView
+            android:id="@+id/baseEmptyView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/_line">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/baseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+        </com.highstreet.lib.view.StateView>
+
+        <LinearLayout
+            android:id="@+id/llFilter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#80000000"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/_line">
+
+            <TextView
+                android:id="@+id/tvTypeAll"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="全部"
+                android:textColor="@color/color_sort_text"
+                android:textSize="14sp" />
+
+            <include layout="@layout/g_include_line" />
+
+            <TextView
+                android:id="@+id/tvTypeBonded"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="共识中"
+                android:textColor="@color/color_sort_text"
+                android:textSize="14sp" />
+
+            <include layout="@layout/g_include_line" />
+
+            <TextView
+                android:id="@+id/tvTypeJailed"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="待解禁"
+                android:textColor="@color/color_sort_text"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</com.highstreet.lib.view.RefreshLayout>

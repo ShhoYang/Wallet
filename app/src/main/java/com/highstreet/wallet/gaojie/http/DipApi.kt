@@ -107,6 +107,12 @@ interface DipApi {
     fun proposalDetail(@Path("proposalId") proposalId: String): Observable<BaseBean<Proposal>>
 
     /**
+     * 投票比例
+     */
+    @GET("gov/proposals/{proposalId}/tally")
+    fun votingRate(@Path("proposalId") proposalId: String): Observable<BaseBean<FinalTallyResult>>
+
+    /**
      * 我的意见
      */
     @GET("gov/proposals/{proposalId}/votes/{voter}")

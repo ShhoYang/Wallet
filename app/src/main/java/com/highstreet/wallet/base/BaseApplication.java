@@ -38,7 +38,7 @@ public class BaseApplication extends Application {
                 .errorActivity(CrashActivity.class)
                 .restartActivity(WelcomeActivity.class)
                 .apply();
-        KLog.init(BuildConfig.testnet);
+//        KLog.init(BuildConfig.testnet);
     }
 
     public BaseData getBaseDao() {

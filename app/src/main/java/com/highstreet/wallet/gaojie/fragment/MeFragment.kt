@@ -65,7 +65,7 @@ class MeFragment : BaseFragment(), FingerprintCallback, ConfirmDialogListener {
                 if (item.cls == null) {
 
                 } else {
-                    go(item.cls)
+                    this@MeFragment.to(item.cls)
                 }
             }
         }

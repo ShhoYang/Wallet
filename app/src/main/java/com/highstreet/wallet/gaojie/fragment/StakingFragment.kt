@@ -26,7 +26,7 @@ class StakingFragment : BaseFragment() {
         viewPager.adapter = FragmentWithTabAdapter(childFragmentManager, fragments)
         tabLayout.setupWithViewPager(viewPager)
         RxView.click(ivRecord) {
-            go(DelegationTransactionRecordActivity::class.java)
+            to(DelegationTransactionRecordActivity::class.java)
         }
     }
 }

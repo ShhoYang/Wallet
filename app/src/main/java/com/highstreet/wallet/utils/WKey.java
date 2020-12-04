@@ -117,6 +117,9 @@ public class WKey {
         } else if (chain.equals(OK_TEST)) {
             return ImmutableList.of(new ChildNumber(44, true), new ChildNumber(996, true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO);
 
+        }else if (chain.equals(DIP_TEST) || chain.equals(DIP_MAIN)) {
+            return ImmutableList.of(new ChildNumber(44, true), new ChildNumber(925, true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO);
+
         }
         return ImmutableList.of(new ChildNumber(44, true), new ChildNumber(118, true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO);
     }

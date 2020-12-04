@@ -43,7 +43,7 @@ class BackupActivity : BaseActivity() {
 
     override fun onBackPressed() {
         if (FROM_CREATE == from) {
-            go(MainActivity::class.java, true)
+            to(MainActivity::class.java, true)
         } else {
             finish()
         }
