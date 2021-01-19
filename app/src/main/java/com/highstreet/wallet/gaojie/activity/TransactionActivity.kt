@@ -13,6 +13,7 @@ import com.highstreet.lib.view.listener.RxView
 import com.highstreet.wallet.R
 import com.highstreet.wallet.crypto.CryptoHelper
 import com.highstreet.wallet.gaojie.AccountManager
+import com.highstreet.wallet.gaojie.StringUtils
 import com.highstreet.wallet.gaojie.constant.Colors
 import com.highstreet.wallet.gaojie.constant.ExtraKey
 import com.highstreet.wallet.gaojie.isAddress
@@ -25,7 +26,11 @@ import kotlinx.android.synthetic.main.g_activity_transaction.*
  * @Date 2020/10/16
  */
 
-class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
+class TransactionActivity : BaseActivity(), View.OnClickListener, View.OnFocusChangeListener {
+
+
+    private var longAmount = 0L
+    private var amount = ""
 
     override fun showToolbar() = false
 
@@ -39,17 +44,14 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
         title = "转账"
         etToAddress.onFocusChangeListener = this
         etAmount.onFocusChangeListener = this
-        etFee.onFocusChangeListener = this
+        etRemarks.onFocusChangeListener = this
 
         RxView.textChanges(etAmount) {
             btnConfirm.isEnabled = etAmount.string().isNotEmpty()
         }
-        RxView.click(ivScan) {
-            ScanActivity.start(this)
-        }
-        RxView.click(btnConfirm) {
-            transact()
-        }
+        RxView.click(ivScan, this)
+        RxView.click(btnConfirm, this)
+        RxView.click(tvAll, this)
     }
 
     private fun transact() {
@@ -73,6 +75,14 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
     }
 
     override fun initData() {
+        viewModel.amountLD.observe(this, Observer {
+            it?.apply {
+                longAmount = getLongAmount()
+                val dip = StringUtils.pdip2DIP(getAmount())
+                amount = dip.substring(0, dip.length - 3)
+                tvBalance.text = "可用余额${amount}DIP"
+            }
+        })
         viewModel.resultLD.observe(this, Observer {
             hideLoading()
             toast(it?.second)
@@ -80,6 +90,7 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
                 finish()
             }
         })
+        viewModel.getAccountInfo()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -99,7 +110,7 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
 
     override fun onFingerprintAuthenticateSucceed() {
         showLoading()
-        viewModel.transact(etToAddress.string(), etAmount.string())
+        viewModel.transact(etToAddress.string(), etAmount.string(), longAmount, etAmount.string() == amount, etRemarks.string())
     }
 
     override fun usePassword(password: String): Boolean {
@@ -112,11 +123,20 @@ class TransactionActivity : BaseActivity(), View.OnFocusChangeListener {
         return true
     }
 
+    override fun onClick(v: View?) {
+        when (v) {
+            ivScan -> ScanActivity.start(this)
+            btnConfirm -> transact()
+            tvAll -> etAmount.setText(amount)
+
+        }
+    }
+
     override fun onFocusChange(v: View, hasFocus: Boolean) {
         when (v) {
             etToAddress -> updateLineStyle(toAddressLine, hasFocus)
             etAmount -> updateLineStyle(amountLine, hasFocus)
-            etFee -> updateLineStyle(feeLine, hasFocus)
+            etRemarks -> updateLineStyle(remarksLine, hasFocus)
         }
     }
 }

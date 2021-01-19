@@ -14,7 +14,7 @@ import com.highstreet.wallet.gaojie.StringUtils
 import com.highstreet.wallet.gaojie.constant.ExtraKey
 import com.highstreet.wallet.gaojie.model.dip.DelegationInfo
 import com.highstreet.wallet.gaojie.model.dip.Validator
-import com.highstreet.wallet.gaojie.vm.DelegationDetailVm
+import com.highstreet.wallet.gaojie.vm.DelegationDetailVM
 import kotlinx.android.synthetic.main.g_activity_delegation_detail.*
 
 /**
@@ -28,7 +28,7 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
     private var reward: String = "0"
 
     private val viewModel by lazy {
-        ViewModelProviders.of(this).get(DelegationDetailVm::class.java)
+        ViewModelProviders.of(this).get(DelegationDetailVM::class.java)
     }
 
     override fun getLayoutId() = R.layout.g_activity_delegation_detail
@@ -69,7 +69,7 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
         delegationInfo?.apply {
             viewModel.getValidator(validator_address)
             viewModel.getReward(validator_address)
-            tvAmount.text = StringUtils.pdip2DIP(shares)
+            tvAmount.text = StringUtils.pdip2DIP(shares, false)
             tvReward.text = reward
             if (isUnDelegate) {
                 tvUnDelegateAmount.text = "${StringUtils.formatDecimal(shares)}解委托中\n（剩余${StringUtils.timeGap(completionTime)}）"
@@ -95,10 +95,15 @@ class DelegationDetailActivity : BaseActivity(), View.OnClickListener {
                 }
             }
             llReward -> {
-                val validatorAddress = delegationInfo?.validator_address
-                val delegatorAddress = delegationInfo?.delegator_address
-                if (!TextUtils.isEmpty(validatorAddress) && !TextUtils.isEmpty(delegatorAddress) && reward != "0" && !TextUtils.isEmpty(reward)) {
-                    ReceiveRewardActivity.start(this, validatorAddress!!, delegatorAddress!!, reward)
+                if (TextUtils.isEmpty(reward) || "0" == reward || reward.toDouble() == 0.0) {
+                    toast("奖励为0")
+
+                } else {
+                    val validatorAddress = delegationInfo?.validator_address
+                    val delegatorAddress = delegationInfo?.delegator_address
+                    if (!TextUtils.isEmpty(validatorAddress) && !TextUtils.isEmpty(delegatorAddress)) {
+                        ReceiveRewardActivity.start(this, validatorAddress!!, delegatorAddress!!, reward + "DIP")
+                    }
                 }
             }
             llDelegate -> {

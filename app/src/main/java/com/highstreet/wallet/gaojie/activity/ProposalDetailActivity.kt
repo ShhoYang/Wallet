@@ -74,6 +74,7 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
             tvStatus.text = getStatus()
             tvTitle.text = content?.value?.title
             tvDesc.text = content?.value?.description
+            tvProposer.text = proposer
             tvType.text = content?.type
             tvSubmitTime.text = StringUtils.utc2String(submit_time)
             tvVotingStartTime.text = StringUtils.utc2String(voting_start_time)
@@ -90,16 +91,16 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
             val abstain = BigDecimal(it.abstain ?: "0")
             var total = yes.add(noWithVeto).add(no).add(abstain)
             if (total.compareTo(BigDecimal(0)) == 0) {
-                tvYes.text = "(0)0%"
+                tvYes.text = "0%"
                 progressYes.progress = 0
 
-                tvNoWithVeto.text = "(0)0%"
+                tvNoWithVeto.text = "0%"
                 progressNoWithVeto.progress = 0
 
-                tvNo.text = "(0)0%"
+                tvNo.text = "0%"
                 progressNo.progress = 0
 
-                tvAbstain.text = "(0)0%"
+                tvAbstain.text = "0%"
                 progressAbstain.progress = 0
             } else {
                 val maxProcess = BigDecimal(100)
@@ -111,16 +112,16 @@ class ProposalDetailActivity : BaseActivity(), View.OnClickListener {
 //                val df = DecimalFormat("#.####%")
                 val df = NumberFormat.getPercentInstance()
                 df.maximumFractionDigits = 4
-                tvYes.text = "(${it.yes})${df.format(yesRate)}"
+                tvYes.text = df.format(yesRate)
                 progressYes.progress = yesRate.multiply(maxProcess).toInt()
 
-                tvNoWithVeto.text = "(${it.no_with_veto})${df.format(noWithVetoRate)}"
+                tvNoWithVeto.text = df.format(noWithVetoRate)
                 progressNoWithVeto.progress = noWithVetoRate.multiply(maxProcess).toInt()
 
-                tvNo.text = "(${it.no})${df.format(noRate)}"
+                tvNo.text = df.format(noRate)
                 progressNo.progress = noRate.multiply(maxProcess).toInt()
 
-                tvAbstain.text = "(${it.abstain})${df.format(abstainRate)}"
+                tvAbstain.text = df.format(abstainRate)
                 progressAbstain.progress = abstainRate.multiply(maxProcess).toInt()
             }
 

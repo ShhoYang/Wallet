@@ -76,12 +76,6 @@
         style="@style/InputViewTip"
         android:text="最多可输入100个字符（选填）" />
 
-    <TextView
-        style="@style/InputViewName"
-        android:layout_marginTop="32dp"
-        android:text="费用"
-        android:visibility="gone" />
-
     <com.highstreet.lib.view.RoundButton
         android:id="@+id/btnConfirm"
         android:layout_width="match_parent"

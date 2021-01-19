@@ -11,7 +11,7 @@ import com.highstreet.wallet.gaojie.activity.DelegationDetailActivity
 import com.highstreet.wallet.gaojie.activity.ValidatorListActivity
 import com.highstreet.wallet.gaojie.adapter.DelegationAdapter
 import com.highstreet.wallet.gaojie.model.dip.DelegationInfo
-import com.highstreet.wallet.gaojie.vm.DelegationListVm
+import com.highstreet.wallet.gaojie.vm.DelegationListVM
 import kotlinx.android.synthetic.main.g_fragment_delegation_list.*
 
 /**
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.g_fragment_delegation_list.*
  * @Date 2020/10/24
  */
 
-class DelegationListFragment : BaseListFragment<DelegationInfo, DelegationListVm>() {
+class DelegationListFragment : BaseListFragment<DelegationInfo, DelegationListVM>() {
 
     override fun getLayoutId() = R.layout.g_fragment_delegation_list
 

@@ -6,10 +6,8 @@ package com.highstreet.wallet.gaojie.constant
  */
 object Constant {
 
-    //    const val FEE_RATE = 1000
-    const val FEE_RATE = 6_000_000
     const val GAS = 400_000
-    const val GAS_PRICE = 6_000_000
+    const val GAS_PRICE = 600_000
 
     const val DIP_RATE = 1_000_000_000_000
 

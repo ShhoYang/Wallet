@@ -62,7 +62,7 @@ class CreateWalletVM : BaseViewModel() {
             return
         }
 
-        ApiService.getDipApi().test("https://docs.dippernetwork.com/dip/get_token?" + accountManager.address).subscribeBy({
+        ApiService.getDipApi().test("https://faucet.testnet.dippernetwork.com/get_token?" + accountManager.address).subscribeBy({
             resultLD.value = true
         }, {
             resultLD.value = true

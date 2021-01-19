@@ -71,6 +71,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:text="提案人"
+                    android:textColor="@color/text_subtitle"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvProposer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="64dp"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:textColor="@color/text_dark_blue"
+                    android:textSize="14sp" />
+
+            </FrameLayout>
+
+            <include layout="@layout/g_include_line" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:text="提案类型"
                     android:textColor="@color/text_subtitle"
                     android:textSize="14sp" />
@@ -79,7 +106,10 @@
                     android:id="@+id/tvType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|right"
+                     android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="64dp"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
                     android:textColor="@color/text_dark_blue"
                     android:textSize="14sp" />
 

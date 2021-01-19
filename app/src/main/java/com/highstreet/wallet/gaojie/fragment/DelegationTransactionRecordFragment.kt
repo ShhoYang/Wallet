@@ -5,14 +5,14 @@ import com.highstreet.lib.ui.BaseListFragment
 import com.highstreet.wallet.gaojie.adapter.DelegationTransactionRecordAdapter
 import com.highstreet.wallet.gaojie.constant.ExtraKey
 import com.highstreet.wallet.gaojie.model.dip.Tx
-import com.highstreet.wallet.gaojie.vm.DelegationTransactionRecordVm
+import com.highstreet.wallet.gaojie.vm.DelegationTransactionRecordVM
 
 /**
  * @author Yang Shihao
  * @Date 2020/10/24
  */
 
-class DelegationTransactionRecordFragment : BaseListFragment<Tx, DelegationTransactionRecordVm>() {
+class DelegationTransactionRecordFragment : BaseListFragment<Tx, DelegationTransactionRecordVM>() {
 
     override fun prepare(savedInstanceState: Bundle?) {
         viewModel.type = arguments?.getString(ExtraKey.STRING) ?: TYPE_BOND

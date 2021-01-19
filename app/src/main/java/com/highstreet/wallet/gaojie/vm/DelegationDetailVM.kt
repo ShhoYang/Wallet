@@ -13,7 +13,7 @@ import com.highstreet.wallet.gaojie.model.dip.Validator
  * @Date 2020/10/27
  */
 
-class DelegationDetailVm : BaseViewModel() {
+class DelegationDetailVM : BaseViewModel() {
 
     val validatorLD: MutableLiveData<Validator?> = MutableLiveData()
     val rewardLD: MutableLiveData<String> = MutableLiveData()
@@ -33,7 +33,7 @@ class DelegationDetailVm : BaseViewModel() {
                 "0"
             } else {
                 val coin = list[0]
-                StringUtils.pdip2DIP(coin)
+                StringUtils.pdip2DIP(coin, false)
             }
         }, {
             rewardLD.value = "0"

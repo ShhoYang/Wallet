@@ -15,6 +15,7 @@ import com.highstreet.lib.view.dialog.ConfirmDialogListener
 import com.highstreet.lib.view.listener.RxView
 import com.highstreet.wallet.R
 import com.highstreet.wallet.gaojie.AccountManager
+import com.highstreet.wallet.gaojie.activity.AboutActivity
 import com.highstreet.wallet.gaojie.activity.TransactionActivity
 import com.highstreet.wallet.gaojie.activity.TransactionRecordActivity
 import com.highstreet.wallet.gaojie.activity.WalletManageActivity
@@ -43,17 +44,9 @@ class MeFragment : BaseFragment(), FingerprintCallback, ConfirmDialogListener {
         clFingerprint.visibility(isFingerprint)
 
         val menuList = arrayListOf(
-                Menu("转账", R.mipmap.my_setting, TransactionActivity::class.java),
-                Menu.narrow(),
-                Menu("交易明细", R.mipmap.my_friend, TransactionRecordActivity::class.java),
+                Menu("钱包管理", R.mipmap.my_wallet, WalletManageActivity::class.java),
                 Menu.wide(),
-                Menu("钱包管理", R.mipmap.my_integral, WalletManageActivity::class.java)
-//                Menu.narrow(),
-//                Menu("地址簿", R.mipmap.my_friend),
-//                Menu.wide(),
-//                Menu("设置", R.mipmap.my_setting),
-//                Menu.narrow(),
-//                Menu("关于", R.mipmap.my_friend)
+                Menu("关于我们", R.mipmap.my_friend, AboutActivity::class.java)
         )
         if (isFingerprint) {
             menuList.add(0, Menu.wide())

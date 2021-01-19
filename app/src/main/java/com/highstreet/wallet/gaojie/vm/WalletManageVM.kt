@@ -19,6 +19,7 @@ class WalletManageVM : BaseListViewModel<Account>() {
 
     private val handler = Handler()
 
+    val updateNameLD = MutableLiveData<Boolean>()
     val deleteLD = MutableLiveData<Boolean>()
 
     override fun pageSize() = Int.MAX_VALUE
@@ -35,6 +36,28 @@ class WalletManageVM : BaseListViewModel<Account>() {
     override fun onDestroy() {
         handler.removeCallbacksAndMessages(null)
         super.onDestroy()
+    }
+
+    fun updateWalletName(account: Account, newName: String) {
+        val oldName = account.nickName
+        if (oldName == newName) {
+            return
+        }
+        account.nickName = newName
+        Observable.create(ObservableOnSubscribe<Boolean> {
+            it.onNext(AccountManager.instance().update(account))
+            it.onComplete()
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (!it) {
+                        account.nickName = oldName
+                    }
+                    updateNameLD.value = it
+                }, {
+                    it.printStackTrace()
+                    updateNameLD.value = false
+                }).add()
     }
 
     fun deleteAccount(account: Account) {

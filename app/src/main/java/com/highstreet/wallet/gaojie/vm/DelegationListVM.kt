@@ -14,7 +14,7 @@ import com.highstreet.wallet.gaojie.model.dip.DelegationInfo
  * @Date 2020/10/24
  */
 
-class DelegationListVm : BaseListViewModel<DelegationInfo>() {
+class DelegationListVM : BaseListViewModel<DelegationInfo>() {
 
     val totalLD: MutableLiveData<Pair<String, String>> = MutableLiveData()
     val rewardD: MutableLiveData<String> = MutableLiveData()

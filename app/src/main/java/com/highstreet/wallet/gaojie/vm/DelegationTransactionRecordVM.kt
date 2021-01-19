@@ -12,7 +12,7 @@ import com.highstreet.wallet.gaojie.model.dip.Tx
  * @Date 2020/10/24
  */
 
-class DelegationTransactionRecordVm : BaseListViewModel<Tx>() {
+class DelegationTransactionRecordVM : BaseListViewModel<Tx>() {
 
     var type = DelegationTransactionRecordFragment.TYPE_BOND
 

@@ -35,7 +35,7 @@
             android:layout_height="24dp"
             android:gravity="center"
             android:singleLine="true"
-            android:text="请备份"
+            android:text="备份"
             android:textColor="@color/text_orange"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -79,9 +79,19 @@
             android:textColor="@color/text_title"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintEnd_toStartOf="@id/ivEdit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWalletAddress" />
+
+        <ImageView
+            android:id="@+id/ivEdit"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/icon_edit"
+            app:layout_constraintBottom_toBottomOf="@id/ivDelete"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintTop_toTopOf="@id/ivDelete" />
 
         <ImageView
             android:id="@+id/ivDelete"

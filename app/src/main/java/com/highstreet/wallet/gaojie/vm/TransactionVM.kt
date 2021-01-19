@@ -1,10 +1,10 @@
 package com.highstreet.wallet.gaojie.vm
 
 import android.arch.lifecycle.MutableLiveData
-import com.highstreet.lib.viewmodel.BaseViewModel
 import com.highstreet.wallet.cosmos.MsgGenerator
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.AmountUtils
+import com.highstreet.wallet.gaojie.constant.Constant
 import com.highstreet.wallet.gaojie.http.ApiService
 import com.highstreet.wallet.gaojie.http.subscribeBy
 import com.highstreet.wallet.gaojie.model.dip.AccountInfo
@@ -19,20 +19,23 @@ import java.util.*
  * @Date 2020/10/15
  */
 
-class TransactionVM : BaseViewModel() {
+class TransactionVM : BalanceVM() {
 
     val resultLD = MutableLiveData<Pair<Boolean, String>>()
 
-    fun transact(toAddress: String, toAmount: String) {
-
+    fun transact(toAddress: String, toAmount: String, allAmount: Long, isAll: Boolean, remarks: String) {
         ApiService.getDipApi().account(AccountManager.instance().address).subscribeBy({
-            val coins = it.result?.value?.coins
-            if (null != coins && coins.isNotEmpty()) {
-                val balance = coins[0].amount ?: "0"
-                if (AmountUtils.isEnough(balance, toAmount)) {
-                    generateParams(it.result!!, toAddress, toAmount)
-                } else {
-                    resultLD.value = Pair(false, "金额不足")
+            if (isAll) {
+                generateParams(it.result!!, toAddress, AmountUtils.generateCoin(allAmount, true), remarks)
+            } else {
+                val coins = it.result?.value?.coins
+                if (null != coins && coins.isNotEmpty()) {
+                    val balance = coins[0].amount ?: "0"
+                    if (AmountUtils.isEnough(balance, toAmount)) {
+                        generateParams(it.result!!, toAddress, AmountUtils.generateCoin(toAmount), remarks)
+                    } else {
+                        resultLD.value = Pair(false, "金额不足")
+                    }
                 }
             }
         }, {
@@ -40,18 +43,18 @@ class TransactionVM : BaseViewModel() {
         }).add()
     }
 
-    private fun generateParams(accountInfo: AccountInfo, toAddress: String, toAmount: String) {
+    private fun generateParams(accountInfo: AccountInfo, toAddress: String, coin: Coin, remarks: String) {
         val account = AccountManager.instance().account!!
         account.accountNumber = accountInfo.getAccountNumber()
         account.sequenceNumber = accountInfo.getSequence()
         val coinList = ArrayList<Coin>()
-        coinList.add(AmountUtils.generateCoin(toAmount))
+        coinList.add(coin)
         val entropy = AccountManager.getEntropy(account)
         val deterministicKey = WKey.getKeyWithPathfromEntropy(AccountManager.instance().chain, entropy, account.path.toInt(), account.newBip44)
         val msg = MsgGenerator.genTransferMsg(account.address, toAddress, coinList, AccountManager.instance().chain)
         val msgs = ArrayList<Msg>()
         msgs.add(msg)
-        doTransact(MsgGenerator.getBraodcaseReq(account, msgs, AmountUtils.generateFee(), "", deterministicKey))
+        doTransact(MsgGenerator.getBraodcaseReq(account, msgs, AmountUtils.generateFee(), remarks, deterministicKey))
     }
 
     private fun doTransact(reqBroadCast: ReqBroadCast) {

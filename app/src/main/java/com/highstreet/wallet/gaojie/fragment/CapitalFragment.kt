@@ -13,6 +13,8 @@ import com.highstreet.wallet.R
 import com.highstreet.wallet.gaojie.AccountManager
 import com.highstreet.wallet.gaojie.StringUtils
 import com.highstreet.wallet.gaojie.activity.ReceiveActivity
+import com.highstreet.wallet.gaojie.activity.TransactionActivity
+import com.highstreet.wallet.gaojie.activity.TransactionRecordActivity
 import com.highstreet.wallet.gaojie.activity.WalletManageActivity
 import com.highstreet.wallet.gaojie.vm.CapitalVM
 import kotlinx.android.synthetic.main.g_fragment_capital.*
@@ -47,6 +49,9 @@ class CapitalFragment : BaseFragment(), View.OnClickListener {
         RxView.click(ivEye, 300, this)
 
         RxView.click(ivSwitchWallet, this)
+        RxView.click(ivTip, this)
+        RxView.click(flTransaction, this)
+        RxView.click(flTransactionRecord, this)
         RxView.click(ivTip, this)
         baseRefreshLayout.isRefreshing = true
     }
@@ -110,6 +115,8 @@ class CapitalFragment : BaseFragment(), View.OnClickListener {
                             .show()
                 }
             }
+            flTransaction -> to(TransactionActivity::class.java)
+            flTransactionRecord -> to(TransactionRecordActivity::class.java)
         }
     }
 }

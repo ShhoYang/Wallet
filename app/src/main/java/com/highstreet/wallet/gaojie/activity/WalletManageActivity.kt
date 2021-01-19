@@ -9,6 +9,8 @@ import com.highstreet.lib.fingerprint.FingerprintUtils
 import com.highstreet.lib.ui.BaseListActivity
 import com.highstreet.lib.view.dialog.ConfirmDialog
 import com.highstreet.lib.view.dialog.ConfirmDialogListener
+import com.highstreet.lib.view.dialog.InputDialog
+import com.highstreet.lib.view.dialog.InputDialogListener
 import com.highstreet.lib.view.listener.RxView
 import com.highstreet.wallet.R
 import com.highstreet.wallet.crypto.CryptoHelper
@@ -61,6 +63,15 @@ class WalletManageActivity : BaseListActivity<Account, WalletManageVM>() {
         super.initData()
         account = AccountManager.instance().account
         lifecycle.addObserver(viewModel)
+        viewModel.updateNameLD.observe(this, Observer {
+            if (true == it) {
+                toast("修改成功")
+                adapter.notifyDataSetChanged()
+            } else {
+                hideLoading()
+                toast("修改失败")
+            }
+        })
         viewModel.deleteLD.observe(this, Observer {
             if (true == it) {
                 toast("删除成功")
@@ -89,6 +100,17 @@ class WalletManageActivity : BaseListActivity<Account, WalletManageVM>() {
                 type = TYPE_BACKUP
                 useAccount = item
                 getFingerprint(FingerprintUtils.isAvailable(this), true)?.authenticate()
+            }
+            R.id.ivEdit -> {
+                InputDialog(this)
+                        .setTitle("修改钱包名称")
+                        .setHint("请输入新的钱包名称")
+                        .setText(item.nickName)
+                        .setListener(object : InputDialogListener {
+                            override fun confirm(content: String) {
+                                viewModel.updateWalletName(item, content)
+                            }
+                        }).show()
             }
             R.id.ivDelete -> {
                 ConfirmDialog(this).setMsg("确认删除钱包${item.nickName}?").setListener(object : ConfirmDialogListener {

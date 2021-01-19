@@ -78,9 +78,9 @@ class ImportWalletActivity : BaseActivity() {
         editTexts.add(etMnemonic22)
         editTexts.add(etMnemonic23)
         editTexts.add(etMnemonic24)
-
-//        val s= "fiber kind account guide text bundle thought equal pudding section arm certain shoulder check deputy middle floor pudding crime advice shoulder layer choice foster"
-//        val s = "energy sorry trap review whale spoon focus crash first siren barely spatial mixed ability canyon judge hamster elegant grain circle diet shrimp area anxiety"
+//
+//        val s = "elder grief parrot drop lab stereo urge bicycle defense celery wedding enter desk physical brisk outdoor vendor bread hedgehog payment trophy twice neglect laptop"
+//
 //        val list = s.split(" ")
 
         editTexts.forEachIndexed() { i, editText ->

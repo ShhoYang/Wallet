@@ -55,7 +55,7 @@ class WalletManageAdapter() : BasePagedAdapter<Account>(R.layout.g_item_wallet_m
                 .setText(R.id.tvWalletAddress, item.address)
                 .setText(R.id.tvAmount, item.address)
 
-        holder.setClickListener(arrayOf(R.id.tvWalletAddress, R.id.ivCopy, R.id.tvBackup,R.id.ivDelete)) {
+        holder.setClickListener(arrayOf(R.id.tvWalletAddress, R.id.ivCopy, R.id.tvBackup, R.id.ivEdit, R.id.ivDelete)) {
             itemClickListener?.itemClicked(it, item, position)
         }
     }

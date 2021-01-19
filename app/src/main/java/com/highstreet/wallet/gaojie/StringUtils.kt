@@ -33,28 +33,28 @@ object StringUtils {
         return s
     }
 
-    fun pdip2DIP(coin: Coin?): String {
+    fun pdip2DIP(coin: Coin?, unit: Boolean = true): String {
+        if (coin == null) {
+            return "0DIP"
+        }
+        return pdip2DIP("${coin.amount}${coin.denom}", unit)
+    }
+
+    fun pdip2DIP(coin: com.highstreet.wallet.model.type.Coin?, unit: Boolean = true): String {
         if (coin == null) {
             return "0DIP"
         }
 
-        return pdip2DIP("${coin.amount}${coin.denom}")
+        return pdip2DIP("${coin.amount}${coin.denom}", unit)
     }
 
-    fun pdip2DIP(coin: com.highstreet.wallet.model.type.Coin?): String {
-        if (coin == null) {
-            return "0DIP"
-        }
+    fun pdip2DIP(amount: String?, unit: Boolean = true): String {
 
-        return pdip2DIP("${coin.amount}${coin.denom}")
-    }
-
-    fun pdip2DIP(amount: String?): String {
         if (amount == null || amount.isEmpty()) {
-            return "0DIP"
+            return formatUnit("0", unit)
         }
 
-        if (amount.endsWith("DIP")) {
+        if (amount.endsWith(DIP)) {
             return amount
         }
 
@@ -65,18 +65,26 @@ object StringUtils {
         }
 
         if (temp == "" || temp == "0") {
-            return "0DIP"
+            return formatUnit("0", unit)
         }
 
         val df = DecimalFormat("#.######")
         if (TextUtils.isDigitsOnly(temp)) {
             val l = temp.toLong().toDouble() / DIP_RATE
-            return "${df.format(l)}DIP"
+            return formatUnit(df.format(l), unit)
         } else if (temp.contains(".")) {
             val l = temp.toDouble() / DIP_RATE
-            return "${df.format(l)}DIP"
+            return formatUnit(df.format(l), unit)
         }
         return amount
+    }
+
+    private fun formatUnit(value: String, unit: Boolean): String {
+        return if (unit) {
+            value + DIP
+        } else {
+            value
+        }
     }
 
     fun utc2String(s: String?): String {

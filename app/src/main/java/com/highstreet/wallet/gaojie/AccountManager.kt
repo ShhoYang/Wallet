@@ -95,6 +95,21 @@ class AccountManager private constructor() {
     }
 
     /**
+     * @return 修改
+     */
+    fun update(account: Account): Boolean {
+        val dao = dao()
+        val ret = dao.onUpdateAccount(account)
+
+        if (ret <= 0) {
+            return false
+        }
+
+        initAccounts()
+        return true
+    }
+
+    /**
      * @return 删除插入成功
      */
     fun deleteAccount(account: Account): Boolean {

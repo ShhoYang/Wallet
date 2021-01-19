@@ -8,6 +8,8 @@ import com.highstreet.wallet.gaojie.constant.Constant
 import com.highstreet.wallet.model.StdTx
 import com.highstreet.wallet.model.type.Coin
 import java.lang.Exception
+import java.math.BigDecimal
+import java.text.DecimalFormat
 import kotlin.collections.ArrayList
 
 /**
@@ -34,15 +36,32 @@ data class Tx(
      * 费用
      */
     fun getFee(): String {
-        if (gas_used == null) {
+        if (gas_used == null || !TextUtils.isDigitsOnly(gas_used)) {
             return ""
         }
 
-        if (!TextUtils.isDigitsOnly(gas_used)) {
-            return gas_used
+        val gas = tx?.value?.fee?.gas
+        if (TextUtils.isEmpty(gas)) {
+            return ""
         }
 
-        return "${gas_used.toLong() * Constant.GAS}pdip"
+        val wantedFee = tx?.value?.fee?.amount
+        val feeAmount = if (wantedFee == null || wantedFee.isEmpty()) {
+            null
+        } else {
+            wantedFee[0]
+        }
+
+        if (feeAmount == null || TextUtils.isEmpty(feeAmount.amount)) {
+            return ""
+        }
+
+        var r = BigDecimal(feeAmount.amount).divide(BigDecimal(gas)).multiply(BigDecimal(gas_used))
+        if ("pdip" == feeAmount.denom) {
+            r = r.divide(BigDecimal(Constant.DIP_RATE))
+        }
+        val df = DecimalFormat("#.######")
+        return "${df.format(r.toDouble())}DIP"
     }
 
     /**
